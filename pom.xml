@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fluxtion.dataflow</groupId>
+    <artifactId>dataflow.examples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>dataFlow.examples</name>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dataflow.version>1.12</dataflow.version>
+    </properties>
+
+    <modules>
+        <module>getstarted</module>
+        <module>reference</module>
+        <module>cookbook</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>repsy-fluxtion</id>
+            <name>Fluxtion public repo</name>
+            <url>https://repo.repsy.io/mvn/gregv12/default</url>
+        </repository>
+
+        <repository>
+            <id>repsy-fluxtion-private</id>
+            <name>Fluxtion private repo</name>
+            <url>https://repo.repsy.io/mvn/gregv12/fluxtion-private</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.36</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fluxtion.dataflow</groupId>
+            <artifactId>dataflow-compiler</artifactId>
+            <version>${dataflow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fluxtion.dataflow</groupId>
+            <artifactId>dataflow-runtime</artifactId>
+            <version>${dataflow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hdrhistogram</groupId>
+            <artifactId>HdrHistogram</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.37</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.37</version>
+        </dependency>
+    </dependencies>
+</project>
