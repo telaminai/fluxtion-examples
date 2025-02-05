@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class GroupByWindowExample {
+public class WindowExample {
     record CarTracker(String id, double speed) {}
 
     public static void main(String[] args) {
