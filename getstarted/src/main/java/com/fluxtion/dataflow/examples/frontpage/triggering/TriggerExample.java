@@ -1,3 +1,6 @@
+//REPOS repsy-fluxtion=https://repo.repsy.io/mvn/gregv12/default
+//DEPS com.fluxtion.dataflow:dataflow-builder:1.14
+//COMPILE_OPTIONS -proc:full
 package com.fluxtion.dataflow.examples.frontpage.triggering;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;

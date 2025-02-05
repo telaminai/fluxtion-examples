@@ -1,6 +1,5 @@
 package com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc;
 
-
 /**
  * Monitors each machine for an average or current temperature breach in a sliding window of 4 seconds with a bucket size of 1 second
  * readings are produced randomly every 10 millis the aggregation handles all combining values within a window and dropping

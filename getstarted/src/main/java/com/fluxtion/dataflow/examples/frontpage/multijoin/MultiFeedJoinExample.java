@@ -1,3 +1,6 @@
+//REPOS repsy-fluxtion=https://repo.repsy.io/mvn/gregv12/default
+//DEPS com.fluxtion.dataflow:dataflow-builder:1.14
+//COMPILE_OPTIONS -proc:full
 package com.fluxtion.dataflow.examples.frontpage.multijoin;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
@@ -95,7 +98,7 @@ public class MultiFeedJoinExample {
                     double temperatureReading = random.nextDouble() * 100;
                     tempMonitor.onEvent(new MachineReadingEvent(machineId, temperatureReading));
                 },
-                10_000, 1, TimeUnit.MICROSECONDS);
+                10_000, 10, TimeUnit.MICROSECONDS);
 
         System.out.println("Application started - wait four seconds for first machine readings\n");
     }
