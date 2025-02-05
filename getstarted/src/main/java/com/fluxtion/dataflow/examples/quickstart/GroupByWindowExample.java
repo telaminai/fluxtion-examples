@@ -13,11 +13,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 //Calculates the average speed by manufacturer in a sliding window of 2 seconds with a 500 millisecond bucket size
-public class WindowExample {
+public class GroupByWindowExample {
     record CarTracker(String make, double speed) {}
     static String[] makes = new String[]{"BMW", "Ford", "Honda", "Jeep", "VW"};
 
     public static void main(String[] args) {
+        System.out.println("building DataFlow::avgSpeedByMake...");
         //build the DataFlow
         DataFlow avgSpeedByMake = DataFlowBuilder.subscribe(CarTracker.class)
                 .groupBySliding(
@@ -34,9 +35,10 @@ public class WindowExample {
         avgSpeedByMake.addSink("average car speed", System.out::println);
 
         //send data from an unbounded real-time feed to the DataFlow
+        System.out.println("publishing events to DataFlow::avgSpeedByMake...");
         Random random = new Random();
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
                 () -> avgSpeedByMake.onEvent(new CarTracker(makes[random.nextInt(makes.length)], random.nextDouble(100))),
-                100, 100, TimeUnit.MILLISECONDS);
+                100, 400, TimeUnit.MILLISECONDS);
     }
 }
