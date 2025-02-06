@@ -41,7 +41,7 @@ public class GroupByWindowExample {
         avgSpeedByMake.addSink("average car speed", System.out::println);
 
         //send data from an unbounded real-time feed to the DataFlow
-        System.out.println("publishing events to DataFlow::avgSpeedByMake...");
+        System.out.println("publishing events to DataFlow::avgSpeedByMake...\n");
         Random random = new Random();
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
                 () -> avgSpeedByMake.onEvent(new CarTracker(makes[random.nextInt(makes.length)], random.nextDouble(100))),
