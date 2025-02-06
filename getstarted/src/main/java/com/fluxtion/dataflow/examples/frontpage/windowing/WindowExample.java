@@ -1,3 +1,6 @@
+//REPOS repsy-fluxtion=https://repo.repsy.io/mvn/fluxtion/fluxtion-public
+//DEPS com.fluxtion.dataflow:dataflow-builder:1.0.0
+//COMPILE_OPTIONS -proc:full
 package com.fluxtion.dataflow.examples.frontpage.windowing;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;

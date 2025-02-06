@@ -1,5 +1,5 @@
-//REPOS repsy-fluxtion=https://repo.repsy.io/mvn/gregv12/default
-//DEPS com.fluxtion.dataflow:dataflow-builder:1.14
+//REPOS repsy-fluxtion=https://repo.repsy.io/mvn/fluxtion/fluxtion-public
+//DEPS com.fluxtion.dataflow:dataflow-builder:1.0.0
 //COMPILE_OPTIONS -proc:full
 package com.fluxtion.dataflow.examples.frontpage.multijoin;
 
@@ -84,8 +84,8 @@ public class MultiFeedJoinExample {
         //set up machine locations
         tempMonitor.onEvent(new MachineProfileEvent("server_GOOG", LocationCode.USA_EAST_1, 70, 48));
         tempMonitor.onEvent(new MachineProfileEvent("server_AMZN", LocationCode.USA_EAST_1, 99.999, 65));
-        tempMonitor.onEvent(new MachineProfileEvent("server_MSFT", LocationCode.USA_EAST_2,92, 49.99));
-        tempMonitor.onEvent(new MachineProfileEvent("server_TKM", LocationCode.USA_EAST_2,102, 50.0001));
+        tempMonitor.onEvent(new MachineProfileEvent("server_MSFT", LocationCode.USA_EAST_2, 92, 49.99));
+        tempMonitor.onEvent(new MachineProfileEvent("server_TKM", LocationCode.USA_EAST_2, 102, 50.0001));
 
         //set up support contacts
         tempMonitor.onEvent(new SupportContactEvent("Jean", LocationCode.USA_EAST_1, "jean@fluxtion.com"));
