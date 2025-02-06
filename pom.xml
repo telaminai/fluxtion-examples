@@ -30,12 +30,6 @@
             <name>Fluxtion public repo</name>
             <url>https://repo.repsy.io/mvn/fluxtion/fluxtion-public</url>
         </repository>
-
-        <repository>
-            <id>repsy-fluxtion-private</id>
-            <name>Fluxtion private repo</name>
-            <url>https://repo.repsy.io/mvn/fluxtion/fluxtion-private</url>
-        </repository>
     </repositories>
 
     <build>
@@ -59,13 +53,7 @@
     <dependencies>
         <dependency>
             <groupId>com.fluxtion.dataflow</groupId>
-            <artifactId>dataflow-compiler</artifactId>
-            <version>${dataflow.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fluxtion.dataflow</groupId>
-            <artifactId>dataflow-runtime</artifactId>
+            <artifactId>dataflow-builder</artifactId>
             <version>${dataflow.version}</version>
         </dependency>
 
