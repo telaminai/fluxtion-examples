@@ -1,3 +1,8 @@
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
 package com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc;
 
 /**
@@ -17,10 +22,10 @@ package com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc;
  * </ul>
  * <br>
  * <br>
- *
+ * <p>
  * A sink is available for the host application to consume the alarm output, in this case a pretty print consumer<br>
  * <br>
- *
+ * <p>
  * Running the app should produce an output similar to below:
  *
  * <pre>
@@ -52,8 +57,6 @@ package com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc;
  * </pre>
  */
 public class DataFlowMachineMonitor {
-
-
 
 
 }

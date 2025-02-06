@@ -1,0 +1,11 @@
+<component name="CopyrightManager">
+  <settings>
+    <module2copyright>
+      <element module="Production" copyright="dataflow-example" />
+    </module2copyright>
+    <LanguageOptions name="JAVA">
+      <option name="addBlankBefore" value="true" />
+      <option name="prefixLines" value="false" />
+    </LanguageOptions>
+  </settings>
+</component>

@@ -1,3 +1,8 @@
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
 //REPOS repsy-fluxtion=https://repo.repsy.io/mvn/fluxtion/fluxtion-public
 //DEPS com.fluxtion.dataflow:dataflow-builder:1.0.0
 //COMPILE_OPTIONS -proc:full
@@ -14,7 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 //Calculates the average speed by manufacturer in a sliding window of 2 seconds with a 500 millisecond bucket size
 public class GroupByWindowExample {
-    record CarTracker(String make, double speed) {}
+    record CarTracker(String make, double speed) { }
+
     static String[] makes = new String[]{"BMW", "Ford", "Honda", "Jeep", "VW"};
 
     public static void main(String[] args) {
