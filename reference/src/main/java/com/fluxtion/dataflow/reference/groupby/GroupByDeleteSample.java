@@ -1,26 +1,27 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.runtime.EventProcessor;
-import com.fluxtion.runtime.annotations.OnEventHandler;
-import com.fluxtion.runtime.dataflow.groupby.GroupBy;
+package com.fluxtion.dataflow.reference.groupby;
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
+import com.fluxtion.dataflow.runtime.annotations.OnEventHandler;
+import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
 
 import java.util.List;
 
 public class GroupByDeleteSample {
 
-    public record Pupil(long pupilId, int year, String name){}
+    public record Pupil(long pupilId, int year, String name) {}
 
     public static void main(String[] args) {
-        EventProcessor processor = Fluxtion.interpret(c -> {
-            DataFlow.groupByToList(Pupil::year)
-                    .deleteByValue(new DeleteFilter()::leftSchool)
-                    .map(GroupBy::toMap)
-                    .console();
-        });
-
-        processor.init();
+        DataFlow processor = DataFlowBuilder.groupByToList(Pupil::year)
+                .deleteByValue(new DeleteFilter()::leftSchool)
+                .map(GroupBy::toMap)
+                .console()
+                .build();
 
         processor.onEvent(new Pupil(1, 2025, "A"));
         processor.onEvent(new Pupil(2, 2025, "B"));
@@ -38,17 +39,17 @@ public class GroupByDeleteSample {
         processor.onEvent(2023);
     }
 
-    public static class DeleteFilter{
+    public static class DeleteFilter {
 
         private int currentGraduationYear = Integer.MIN_VALUE;
 
         @OnEventHandler
-        public boolean currentGraduationYear(int currentGraduationYear){
+        public boolean currentGraduationYear(int currentGraduationYear) {
             this.currentGraduationYear = currentGraduationYear;
             return true;
         }
 
-        public boolean leftSchool(List<Pupil> pupil){
+        public boolean leftSchool(List<Pupil> pupil) {
             return !pupil.isEmpty() && pupil.getFirst().year() < this.currentGraduationYear;
         }
     }

@@ -6,10 +6,11 @@
 package com.fluxtion.dataflow.reference.node;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
 
 public class PushSample {
     public static void main(String[] args) {
-        var processor = DataFlowBuilder.subscribe(String.class)
+        DataFlow processor = DataFlowBuilder.subscribe(String.class)
                 .push(new MyPushTarget()::updated)
                 .build();
 

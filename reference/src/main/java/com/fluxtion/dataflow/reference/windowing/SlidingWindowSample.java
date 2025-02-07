@@ -7,6 +7,7 @@ package com.fluxtion.dataflow.reference.windowing;
 
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
 
 import java.util.Random;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class SlidingWindowSample {
 
     public static void main(String[] args) throws InterruptedException {
-        var processor = DataFlowBuilder.subscribe(Integer.class)
+        DataFlow processor = DataFlowBuilder.subscribe(Integer.class)
                 .slidingAggregate(Aggregates.intSumFactory(), 300, 4)
                 .console("current sliding 1.2 second sum:{} timeDelta:%dt")
                 .build();

@@ -1,31 +1,32 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.EventProcessorConfig;
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.runtime.dataflow.helpers.Collectors;
+package com.fluxtion.dataflow.reference.windowing;
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
+import com.fluxtion.dataflow.runtime.flowfunction.helpers.Collectors;
 
 public class TumblingTriggerSample {
 
-    public record ClearCart() { }
+    public record ClearCart() {}
 
-    public record GoToCheckout() { }
+    public record GoToCheckout() {}
 
-    public static void buildGraph(EventProcessorConfig processorConfig) {
+    public static void main(String[] args) {
         var resetSignal = DataFlowBuilder.subscribe(ClearCart.class).console("\n--- CLEAR CART ---");
         var publishSignal = DataFlowBuilder.subscribe(GoToCheckout.class).console("\n--- CHECKOUT CART ---");
 
-        DataFlowBuilder.subscribe(String.class)
+        DataFlow processor = DataFlowBuilder.subscribe(String.class)
                 .aggregate(Collectors.listFactory(3))
                 .resetTrigger(resetSignal)
                 .publishTriggerOverride(publishSignal)
                 .filter(l -> !l.isEmpty())
-                .console("CURRENT CART: {}");
-    }
+                .console("CURRENT CART: {}")
+                .build();
 
-    public static void main(String[] args) {
-        var processor = Fluxtion.interpret(TumblingTriggerSample::buildGraph);
-        processor.init();
         processor.onEvent("Gloves");
         processor.onEvent("Toothpaste");
         processor.onEvent("Towel");
