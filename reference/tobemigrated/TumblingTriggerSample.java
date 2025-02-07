@@ -7,14 +7,15 @@ import com.fluxtion.runtime.dataflow.helpers.Collectors;
 
 public class TumblingTriggerSample {
 
-    public record ClearCart() {}
-    public record GoToCheckout() {}
+    public record ClearCart() { }
+
+    public record GoToCheckout() { }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        var resetSignal = DataFlow.subscribe(ClearCart.class).console("\n--- CLEAR CART ---");
-        var publishSignal = DataFlow.subscribe(GoToCheckout.class).console("\n--- CHECKOUT CART ---");
+        var resetSignal = DataFlowBuilder.subscribe(ClearCart.class).console("\n--- CLEAR CART ---");
+        var publishSignal = DataFlowBuilder.subscribe(GoToCheckout.class).console("\n--- CHECKOUT CART ---");
 
-        DataFlow.subscribe(String.class)
+        DataFlowBuilder.subscribe(String.class)
                 .aggregate(Collectors.listFactory(3))
                 .resetTrigger(resetSignal)
                 .publishTriggerOverride(publishSignal)

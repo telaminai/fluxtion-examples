@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class TumblingWindowSample {
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(Integer.class)
+        DataFlowBuilder.subscribe(Integer.class)
                 .tumblingAggregate(Aggregates.intSumFactory(), 300)
                 .console("current tumble sum:{} timeDelta:%dt");
     }
@@ -26,7 +26,7 @@ public class TumblingWindowSample {
         try (ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor()) {
             executor.scheduleAtFixedRate(
                     () -> processor.onEvent(rand.nextInt(100)),
-                    10,10, TimeUnit.MILLISECONDS);
+                    10, 10, TimeUnit.MILLISECONDS);
             Thread.sleep(4_000);
         }
     }

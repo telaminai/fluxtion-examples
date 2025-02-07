@@ -10,7 +10,7 @@ public class ResetFunctionSample {
     public static class MyResetSum implements Stateful<Integer> {
         public int count = 0;
 
-        public int increment(Object o){
+        public int increment(Object o) {
             return ++count;
         }
 
@@ -23,9 +23,9 @@ public class ResetFunctionSample {
     }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(String.class)
+        DataFlowBuilder.subscribe(String.class)
                 .map(new MyResetSum()::increment)
-                .resetTrigger(DataFlow.subscribeToSignal("resetMe"))
+                .resetTrigger(DataFlowBuilder.subscribeToSignal("resetMe"))
                 .console("count:{}");
     }
 

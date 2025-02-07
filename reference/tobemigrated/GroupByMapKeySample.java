@@ -9,10 +9,10 @@ import com.fluxtion.runtime.dataflow.helpers.Aggregates;
 
 public class GroupByMapKeySample {
 
-    public record Pupil(int year, String sex, String name){}
+    public record Pupil(int year, String sex, String name) { }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(Pupil.class)
+        DataFlowBuilder.subscribe(Pupil.class)
                 .groupByFieldsAggregate(Aggregates.countFactory(), Pupil::year, Pupil::sex)
                 .mapKeys(GroupByKey::getKey)//MAPS KEYS
                 .map(GroupBy::toMap)

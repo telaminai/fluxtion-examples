@@ -11,11 +11,11 @@ import java.util.Map;
 
 public class GroupByFieldsSample {
 
-    public record Pupil(int year, String sex, String name){}
+    public record Pupil(int year, String sex, String name) { }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
 
-        DataFlow.subscribe(Pupil.class)
+        DataFlowBuilder.subscribe(Pupil.class)
                 .groupByFieldsAggregate(Aggregates.countFactory(), Pupil::year, Pupil::sex)
                 .map(GroupByFieldsSample::formatGroupBy)
                 .console("Pupil count by year/sex \n----\n{}----\n");

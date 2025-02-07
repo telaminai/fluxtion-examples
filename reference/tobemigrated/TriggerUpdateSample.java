@@ -8,11 +8,11 @@ import com.fluxtion.runtime.dataflow.helpers.Collectors;
 public class TriggerUpdateSample {
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribeToNode(new SubscribeToNodeSample.MyComplexNode())
+        DataFlowBuilder.subscribeToNode(new SubscribeToNodeSample.MyComplexNode())
                 .console("node triggered -> {}")
                 .map(SubscribeToNodeSample.MyComplexNode::getIn)
                 .aggregate(Collectors.listFactory(4))
-                .updateTrigger(DataFlow.subscribeToSignal("updateMe"))
+                .updateTrigger(DataFlowBuilder.subscribeToSignal("updateMe"))
                 .console("last 4 elements:{}\n");
     }
 

@@ -8,7 +8,7 @@ import com.fluxtion.runtime.dataflow.helpers.Aggregates;
 public class GroupByReduceSample {
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(Integer.class)
+        DataFlowBuilder.subscribe(Integer.class)
                 .groupBy(i -> i % 2 == 0 ? "evens" : "odds", Aggregates.intSumFactory())
                 .console("ODD/EVEN sum:{}")
                 .reduceValues(Aggregates.intSumFactory())

@@ -14,12 +14,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class SlidingGroupByCompoundKeySample {
-    public record Trade(String symbol, String client, int amountTraded) {}
+    public record Trade(String symbol, String client, int amountTraded) { }
+
     private static String[] symbols = new String[]{"GOOG", "AMZN", "MSFT", "TKM"};
     private static String[] clients = new String[]{"client_A", "client_B", "client_D", "client_E"};
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(Trade.class)
+        DataFlowBuilder.subscribe(Trade.class)
                 .groupBySliding(
                         GroupByKey.build(Trade::client, Trade::symbol),
                         Trade::amountTraded,
@@ -44,7 +45,7 @@ public class SlidingGroupByCompoundKeySample {
         try (ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor()) {
             executor.scheduleAtFixedRate(
                     () -> processor.onEvent(new Trade(symbols[rand.nextInt(symbols.length)], clients[rand.nextInt(clients.length)], rand.nextInt(100))),
-                    10,10, TimeUnit.MILLISECONDS);
+                    10, 10, TimeUnit.MILLISECONDS);
             Thread.sleep(4_000);
         }
     }

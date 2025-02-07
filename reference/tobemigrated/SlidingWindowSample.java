@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class SlidingWindowSample {
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(Integer.class)
+        DataFlowBuilder.subscribe(Integer.class)
                 .slidingAggregate(Aggregates.intSumFactory(), 300, 4)
                 .console("current sliding 1.2 second sum:{} timeDelta:%dt");
     }
@@ -26,7 +26,7 @@ public class SlidingWindowSample {
         try (ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor()) {
             executor.scheduleAtFixedRate(
                     () -> processor.onEvent(rand.nextInt(100)),
-                    10,10, TimeUnit.MILLISECONDS);
+                    10, 10, TimeUnit.MILLISECONDS);
             Thread.sleep(4_000);
         }
     }

@@ -12,11 +12,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class SlidingGroupBySample {
-    public record Trade(String symbol, int amountTraded) {}
+    public record Trade(String symbol, int amountTraded) { }
+
     private static String[] symbols = new String[]{"GOOG", "AMZN", "MSFT", "TKM"};
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(Trade.class)
+        DataFlowBuilder.subscribe(Trade.class)
                 .groupBySliding(Trade::symbol, Trade::amountTraded, Aggregates.intSumFactory(), 250, 4)
                 .map(GroupBy::toMap)
                 .console("Trade volume for last second:{} timeDelta:%dt");
@@ -30,7 +31,7 @@ public class SlidingGroupBySample {
         try (ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor()) {
             executor.scheduleAtFixedRate(
                     () -> processor.onEvent(new Trade(symbols[rand.nextInt(symbols.length)], rand.nextInt(100))),
-                    10,10, TimeUnit.MILLISECONDS);
+                    10, 10, TimeUnit.MILLISECONDS);
             Thread.sleep(4_000);
         }
     }

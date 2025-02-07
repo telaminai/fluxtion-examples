@@ -23,7 +23,7 @@ public class SubscribeToNodeSample {
     }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribeToNode(new MyComplexNode())
+        DataFlowBuilder.subscribeToNode(new MyComplexNode())
                 .console("node triggered -> {}")
                 .map(MyComplexNode::getIn)
                 .aggregate(Collectors.listFactory(4))

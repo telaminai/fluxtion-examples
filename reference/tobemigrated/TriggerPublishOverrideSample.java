@@ -8,11 +8,11 @@ import com.fluxtion.runtime.dataflow.helpers.Collectors;
 public class TriggerPublishOverrideSample {
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribeToNode(new SubscribeToNodeSample.MyComplexNode())
+        DataFlowBuilder.subscribeToNode(new SubscribeToNodeSample.MyComplexNode())
                 .console("node triggered -> {}")
                 .map(SubscribeToNodeSample.MyComplexNode::getIn)
                 .aggregate(Collectors.listFactory(4))
-                .publishTriggerOverride(DataFlow.subscribeToSignal("publishMe"))
+                .publishTriggerOverride(DataFlowBuilder.subscribeToSignal("publishMe"))
                 .console("last 4 elements:{}\n");
     }
 

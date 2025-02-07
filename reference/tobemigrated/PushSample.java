@@ -6,7 +6,7 @@ import com.fluxtion.compiler.builder.dataflow.DataFlow;
 public class PushSample {
     public static void main(String[] args) {
         var processor = Fluxtion.interpret(c ->
-                DataFlow.subscribe(String.class)
+                DataFlowBuilder.subscribe(String.class)
                         .push(new MyPushTarget()::updated)
         );
         processor.init();
@@ -15,8 +15,8 @@ public class PushSample {
         processor.onEvent("BBB");
     }
 
-    public static class MyPushTarget{
-        public void updated(String in){
+    public static class MyPushTarget {
+        public void updated(String in) {
             System.out.println("received push: " + in);
         }
     }

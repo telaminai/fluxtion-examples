@@ -13,14 +13,15 @@ import java.util.stream.Collectors;
 
 public class GroupByRightOuterJoinSample {
 
-    public record Pupil(int year, String school, String name){}
-    public record School(String name){}
+    public record Pupil(int year, String school, String name) { }
+
+    public record School(String name) { }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
 
-        var schools = DataFlow.subscribe(School.class)
+        var schools = DataFlowBuilder.subscribe(School.class)
                 .groupBy(School::name);
-        var pupils = DataFlow.subscribe(Pupil.class)
+        var pupils = DataFlowBuilder.subscribe(Pupil.class)
                 .groupByToList(Pupil::school);
 
         JoinFlowBuilder.rightJoin(schools, pupils)
@@ -31,7 +32,7 @@ public class GroupByRightOuterJoinSample {
 
     private static String prettyPrint(School schoolName, List<Pupil> pupils) {
         pupils = pupils == null ? Collections.emptyList() : pupils;
-        return pupils.stream().map(Pupil::name).collect(Collectors.joining(",", "pupils[", "]") );
+        return pupils.stream().map(Pupil::name).collect(Collectors.joining(",", "pupils[", "]"));
     }
 
 

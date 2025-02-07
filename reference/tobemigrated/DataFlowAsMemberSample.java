@@ -9,7 +9,7 @@ public class DataFlowAsMemberSample {
 
     public static void main(String[] args) {
         var processor = Fluxtion.interpret(c -> {
-            var flowSupplier = DataFlow.subscribe(String.class).flowSupplier();
+            var flowSupplier = DataFlowBuilder.subscribe(String.class).flowSupplier();
             new MyFlowHolder(flowSupplier);
         });
         processor.init();

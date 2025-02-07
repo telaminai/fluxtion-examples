@@ -6,7 +6,7 @@ import com.fluxtion.compiler.builder.dataflow.DataFlow;
 public class MapSample {
     public static void main(String[] args) {
         var processor = Fluxtion.interpret(c ->
-                DataFlow.subscribe(String.class)
+                DataFlowBuilder.subscribe(String.class)
                         .map(String::toLowerCase)
                         .console("string in {}")
         );

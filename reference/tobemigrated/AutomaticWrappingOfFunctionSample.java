@@ -13,7 +13,7 @@ public class AutomaticWrappingOfFunctionSample {
         SimpleMath simpleMath = new SimpleMath();
 
         //BUILD THE GRAPH WITH DSL
-        var stringFlow = DataFlow.subscribe(String.class).console("\ninput: '{}'");
+        var stringFlow = DataFlowBuilder.subscribe(String.class).console("\ninput: '{}'");
 
         var charCount = stringFlow.map(myFunctions::totalCharCount)
                 .console("charCount: {}");
@@ -30,7 +30,7 @@ public class AutomaticWrappingOfFunctionSample {
     }
 
     private static void basicMap() {
-        var stringFlow = DataFlow.subscribe(String.class);
+        var stringFlow = DataFlowBuilder.subscribe(String.class);
 
         stringFlow.map(String::toLowerCase);
         stringFlow.mapToInt(s -> s.length() / 2);

@@ -12,9 +12,9 @@ public class GroupBySample {
     }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        var resetSignal = DataFlow.subscribe(ResetList.class).console("\n--- RESET ---");
+        var resetSignal = DataFlowBuilder.subscribe(ResetList.class).console("\n--- RESET ---");
 
-        DataFlow.subscribe(Integer.class)
+        DataFlowBuilder.subscribe(Integer.class)
                 .groupBy(i -> i % 2 == 0 ? "evens" : "odds", Aggregates.countFactory())
                 .resetTrigger(resetSignal)
                 .map(GroupBy::toMap)

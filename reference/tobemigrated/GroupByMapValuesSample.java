@@ -13,9 +13,9 @@ public class GroupByMapValuesSample {
     }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
-        var resetSignal = DataFlow.subscribe(ResetList.class).console("\n--- RESET ---");
+        var resetSignal = DataFlowBuilder.subscribe(ResetList.class).console("\n--- RESET ---");
 
-        DataFlow.subscribe(Integer.class)
+        DataFlowBuilder.subscribe(Integer.class)
                 .groupByToSet(i -> i % 2 == 0 ? "evens" : "odds")
                 .resetTrigger(resetSignal)
                 .mapValues(GroupByMapValuesSample::toRange)//MAPS VALUES

@@ -1,9 +1,13 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.EventProcessorConfig;
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.runtime.dataflow.aggregate.AggregateFlowFunction;
+package com.fluxtion.dataflow.reference.aggregate;
+
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.flowfunction.aggregate.AggregateFlowFunction;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,16 +50,12 @@ public class CustomAggregateFunctionSample {
         }
     }
 
-    public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlow.subscribe(LocalDate.class)
-                .aggregate(DateRangeAggregate::new)
-                .resetTrigger(DataFlow.subscribeToSignal("resetDateRange"))
-                .console("UPDATED date range : '{}'");
-    }
-
     public static void main(String[] args) {
-        var processor = Fluxtion.interpret(CustomAggregateFunctionSample::buildGraph);
-        processor.init();
+        var processor = DataFlowBuilder.subscribe(LocalDate.class)
+                .aggregate(DateRangeAggregate::new)
+                .resetTrigger(DataFlowBuilder.subscribeToSignal("resetDateRange"))
+                .console("UPDATED date range : '{}'")
+                .build();
 
         processor.onEvent(LocalDate.of(2019, 8, 10));
         processor.onEvent(LocalDate.of(2009, 6, 14));

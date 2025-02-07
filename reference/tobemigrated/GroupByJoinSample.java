@@ -12,13 +12,14 @@ import java.util.stream.Collectors;
 
 public class GroupByJoinSample {
 
-    public record Pupil(int year, String school, String name){}
-    public record School(String name){}
+    public record Pupil(int year, String school, String name) { }
+
+    public record School(String name) { }
 
     public static void buildGraph(EventProcessorConfig processorConfig) {
 
-        var pupils = DataFlow.subscribe(Pupil.class).groupByToList(Pupil::school);
-        var schools = DataFlow.subscribe(School.class).groupBy(School::name);
+        var pupils = DataFlowBuilder.subscribe(Pupil.class).groupByToList(Pupil::school);
+        var schools = DataFlowBuilder.subscribe(School.class).groupBy(School::name);
 
         JoinFlowBuilder.innerJoin(schools, pupils)
                 .mapValues(Tuples.mapTuple(GroupByJoinSample::prettyPrint))
@@ -27,7 +28,7 @@ public class GroupByJoinSample {
     }
 
     private static String prettyPrint(School schoolName, List<Pupil> pupils) {
-        return pupils.stream().map(Pupil::name).collect(Collectors.joining(",", "pupils[", "]") );
+        return pupils.stream().map(Pupil::name).collect(Collectors.joining(",", "pupils[", "]"));
     }
 
 

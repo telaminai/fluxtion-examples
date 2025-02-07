@@ -6,7 +6,7 @@ import lombok.Data;
 
 import java.util.Date;
 
-import static com.fluxtion.compiler.builder.dataflow.DataFlow.subscribe;
+import static com.fluxtion.compiler.builder.dataflow.DataFlowBuilder.subscribe;
 
 public class MergeAndMapSample {
     public static void main(String[] args) {

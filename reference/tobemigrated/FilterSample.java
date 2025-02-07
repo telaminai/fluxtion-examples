@@ -6,7 +6,7 @@ import com.fluxtion.compiler.builder.dataflow.DataFlow;
 public class FilterSample {
     public static void main(String[] args) {
         var processor = Fluxtion.interpret(c ->
-                DataFlow.subscribe(Integer.class)
+                DataFlowBuilder.subscribe(Integer.class)
                         .filter(i -> i > 10)
                         .console("int {} > 10 ")
         );
