@@ -12,17 +12,16 @@ import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
 import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupByKey;
 import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
 
-import java.util.Map;
-
-public class GroupByFieldsSample {
+public class GroupByMapKeySample {
 
     public record Pupil(int year, String sex, String name) {}
 
     public static void main(String[] args) {
         DataFlow processor = DataFlowBuilder.subscribe(Pupil.class)
                 .groupByFieldsAggregate(Aggregates.countFactory(), Pupil::year, Pupil::sex)
-                .map(GroupByFieldsSample::formatGroupBy)
-                .console("Pupil count by year/sex \n----\n{}----\n")
+                .mapKeys(GroupByKey::getKey)//MAPS KEYS
+                .map(GroupBy::toMap)
+                .console("{}")
                 .build();
 
         processor.onEvent(new Pupil(2015, "Female", "Bob"));
@@ -32,12 +31,5 @@ public class GroupByFieldsSample {
         processor.onEvent(new Pupil(2013, "Female", "Tamsin"));
         processor.onEvent(new Pupil(2013, "Female", "Ayola"));
         processor.onEvent(new Pupil(2015, "Female", "Sunita"));
-    }
-
-    private static String formatGroupBy(GroupBy<GroupByKey<Pupil>, Integer> groupBy) {
-        Map<GroupByKey<Pupil>, Integer> groupByMap = groupBy.toMap();
-        StringBuilder stringBuilder = new StringBuilder();
-        groupByMap.forEach((k, v) -> stringBuilder.append(k.getKey() + ": " + v + "\n"));
-        return stringBuilder.toString();
     }
 }
