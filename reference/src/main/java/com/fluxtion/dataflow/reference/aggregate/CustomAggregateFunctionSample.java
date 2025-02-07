@@ -7,6 +7,7 @@ package com.fluxtion.dataflow.reference.aggregate;
 
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.flowfunction.aggregate.AggregateFlowFunction;
 
 import java.time.LocalDate;
@@ -51,7 +52,7 @@ public class CustomAggregateFunctionSample {
     }
 
     public static void main(String[] args) {
-        var processor = DataFlowBuilder.subscribe(LocalDate.class)
+        DataFlow processor = DataFlowBuilder.subscribe(LocalDate.class)
                 .aggregate(DateRangeAggregate::new)
                 .resetTrigger(DataFlowBuilder.subscribeToSignal("resetDateRange"))
                 .console("UPDATED date range : '{}'")

@@ -1,9 +1,13 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.EventProcessorConfig;
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.runtime.dataflow.Stateful;
+package com.fluxtion.dataflow.reference.functional;
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
+import com.fluxtion.dataflow.runtime.flowfunction.Stateful;
 
 public class ResetFunctionSample {
 
@@ -22,16 +26,12 @@ public class ResetFunctionSample {
         }
     }
 
-    public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlowBuilder.subscribe(String.class)
+    public static void main(String[] args) {
+        DataFlow processor = DataFlowBuilder.subscribe(String.class)
                 .map(new MyResetSum()::increment)
                 .resetTrigger(DataFlowBuilder.subscribeToSignal("resetMe"))
-                .console("count:{}");
-    }
-
-    public static void main(String[] args) {
-        var processor = Fluxtion.interpret(ResetFunctionSample::buildGraph);
-        processor.init();
+                .console("count:{}")
+                .build();
 
         processor.onEvent("A");
         processor.onEvent("B");

@@ -8,15 +8,15 @@ package com.fluxtion.dataflow.reference.functional;
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
 
-public class BiMapSample {
+public class FilterSample {
     public static void main(String[] args) {
-        var strings = DataFlowBuilder.subscribe(String.class);
-        var ints = DataFlowBuilder.subscribe(Integer.class);
-        DataFlow processor = DataFlowBuilder.mapBiFunction((a, b) -> Integer.parseInt(a) + b, strings, ints)
-                .console("biMap ans: {}")
+        DataFlow processor = DataFlowBuilder.subscribe(Integer.class)
+                .filter(i -> i > 10)
+                .console("int {} > 10 ")
                 .build();
 
-        processor.onEvent("500");
-        processor.onEvent(55);
+        processor.onEvent(1);
+        processor.onEvent(17);
+        processor.onEvent(4);
     }
 }

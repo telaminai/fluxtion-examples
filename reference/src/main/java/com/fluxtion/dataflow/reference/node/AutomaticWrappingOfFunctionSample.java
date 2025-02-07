@@ -1,13 +1,19 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.EventProcessorConfig;
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.example.reference.dsl.MyFunctions.SimpleMath;
+package com.fluxtion.dataflow.reference.node;
+
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.reference.MyFunctions;
+import com.fluxtion.dataflow.reference.MyFunctions.SimpleMath;
+import com.fluxtion.dataflow.runtime.DataFlow;
 
 public class AutomaticWrappingOfFunctionSample {
 
-    private static void mapSample(EventProcessorConfig config) {
+    public static void main(String[] args) {
         //STATEFUL FUNCTIONS
         MyFunctions myFunctions = new MyFunctions();
         SimpleMath simpleMath = new SimpleMath();
@@ -21,26 +27,20 @@ public class AutomaticWrappingOfFunctionSample {
         var upperCharCount = stringFlow.map(myFunctions::totalUpperCaseCharCount)
                 .console("upperCharCount: {}");
 
-        DataFlow.mapBiFunction(simpleMath::updatePercentage, upperCharCount, charCount)
+        DataFlowBuilder.mapBiFunction(simpleMath::updatePercentage, upperCharCount, charCount)
                 .console("percentage chars upperCase all words:{}");
 
         //STATELESS FUNCTION
-        DataFlow.mapBiFunction(MyFunctions::wordUpperCasePercentage, upperCharCount, charCount)
-                .console("percentage chars upperCase this word:{}");
+        DataFlow processor = DataFlowBuilder.mapBiFunction(MyFunctions::wordUpperCasePercentage, upperCharCount, charCount)
+                .console("percentage chars upperCase this word:{}")
+                .build();
+        processor.onEvent("test ME");
+        processor.onEvent("and AGAIN");
     }
 
     private static void basicMap() {
         var stringFlow = DataFlowBuilder.subscribe(String.class);
-
         stringFlow.map(String::toLowerCase);
         stringFlow.mapToInt(s -> s.length() / 2);
-    }
-
-    public static void main(String[] args) {
-        var processor = Fluxtion.interpret(AutomaticWrappingOfFunctionSample::mapSample);
-        processor.init();
-
-        processor.onEvent("test ME");
-        processor.onEvent("and AGAIN");
     }
 }

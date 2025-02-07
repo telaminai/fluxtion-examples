@@ -8,15 +8,18 @@ package com.fluxtion.dataflow.reference.functional;
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
 
-public class BiMapSample {
+import java.util.Arrays;
+
+public class FlatMapSample {
+
     public static void main(String[] args) {
-        var strings = DataFlowBuilder.subscribe(String.class);
-        var ints = DataFlowBuilder.subscribe(Integer.class);
-        DataFlow processor = DataFlowBuilder.mapBiFunction((a, b) -> Integer.parseInt(a) + b, strings, ints)
-                .console("biMap ans: {}")
+        DataFlow processor = DataFlowBuilder.subscribe(String.class)
+                .console("\ncsv in [{}]")
+                .flatMap(s -> Arrays.asList(s.split(",")))
+                .console("flattened item [{}]")
                 .build();
 
-        processor.onEvent("500");
-        processor.onEvent(55);
+        processor.onEvent("A,B,C");
+        processor.onEvent("2,3,5,7,11");
     }
 }

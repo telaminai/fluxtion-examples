@@ -1,9 +1,13 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.EventProcessorConfig;
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.runtime.dataflow.helpers.Aggregates;
+package com.fluxtion.dataflow.reference.windowing;
+
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
 
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -12,15 +16,12 @@ import java.util.concurrent.TimeUnit;
 
 public class SlidingWindowSample {
 
-    public static void buildGraph(EventProcessorConfig processorConfig) {
-        DataFlowBuilder.subscribe(Integer.class)
-                .slidingAggregate(Aggregates.intSumFactory(), 300, 4)
-                .console("current sliding 1.2 second sum:{} timeDelta:%dt");
-    }
-
     public static void main(String[] args) throws InterruptedException {
-        var processor = Fluxtion.interpret(SlidingWindowSample::buildGraph);
-        processor.init();
+        var processor = DataFlowBuilder.subscribe(Integer.class)
+                .slidingAggregate(Aggregates.intSumFactory(), 300, 4)
+                .console("current sliding 1.2 second sum:{} timeDelta:%dt")
+                .build();
+
         Random rand = new Random();
 
         try (ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor()) {

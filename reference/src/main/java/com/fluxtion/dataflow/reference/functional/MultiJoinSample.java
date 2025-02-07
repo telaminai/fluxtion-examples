@@ -1,9 +1,14 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
-import com.fluxtion.compiler.Fluxtion;
-import com.fluxtion.compiler.builder.dataflow.DataFlow;
-import com.fluxtion.compiler.builder.dataflow.MultiJoinBuilder;
-import com.fluxtion.runtime.dataflow.groupby.GroupBy;
+package com.fluxtion.dataflow.reference.functional;
+
+import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.builder.flowfunction.MultiJoinBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
+import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
 import lombok.Data;
 import lombok.Value;
 
@@ -13,24 +18,22 @@ import java.util.stream.Collectors;
 public class MultiJoinSample {
 
     public static void main(String[] args) {
+        var ageDataFlow = DataFlowBuilder.groupBy(Age::getName);
+        var genderDataFlow = DataFlowBuilder.groupBy(Gender::getName);
+        var nationalityDataFlow = DataFlowBuilder.groupBy(Nationality::getName);
+        var dependentDataFlow = DataFlowBuilder.groupByToList(Dependent::getGuardianName);
 
-        var processor = Fluxtion.interpret(c -> {
-            var ageDataFlow = DataFlow.groupBy(Age::getName);
-            var genderDataFlow = DataFlow.groupBy(Gender::getName);
-            var nationalityDataFlow = DataFlow.groupBy(Nationality::getName);
-            var dependentDataFlow = DataFlow.groupByToList(Dependent::getGuardianName);
+        DataFlow processor = MultiJoinBuilder.builder(String.class, MergedData::new)
+                .addJoin(ageDataFlow, MergedData::setAge)
+                .addJoin(genderDataFlow, MergedData::setGender)
+                .addJoin(nationalityDataFlow, MergedData::setNationality)
+                .addOptionalJoin(dependentDataFlow, MergedData::setDependent)
+                .dataFlow()
+                .mapValues(MergedData::formattedString)
+                .map(GroupBy::toMap)
+                .console("multi join result : {}")
+                .build();
 
-            MultiJoinBuilder.builder(String.class, MergedData::new)
-                    .addJoin(ageDataFlow, MergedData::setAge)
-                    .addJoin(genderDataFlow, MergedData::setGender)
-                    .addJoin(nationalityDataFlow, MergedData::setNationality)
-                    .addOptionalJoin(dependentDataFlow, MergedData::setDependent)
-                    .dataFlow()
-                    .mapValues(MergedData::formattedString)
-                    .map(GroupBy::toMap)
-                    .console("multi join result : {}");
-        });
-        processor.init();
 
         processor.onEvent(new Age("greg", 47));
         processor.onEvent(new Gender("greg", "male"));

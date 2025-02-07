@@ -10,16 +10,17 @@
 package com.fluxtion.dataflow.reference.aggregate;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.flowfunction.helpers.Collectors;
 
 public class AggregateSample {
 
-    public record ResetList() { }
+    public record ResetList() {}
 
     public static void main(String[] args) {
         var resetSignal = DataFlowBuilder.subscribe(ResetList.class).console("\n--- RESET ---");
 
-        var processor = DataFlowBuilder
+        DataFlow processor = DataFlowBuilder
                 .subscribe(String.class)
                 .aggregate(Collectors.listFactory(3))
                 .resetTrigger(resetSignal).
