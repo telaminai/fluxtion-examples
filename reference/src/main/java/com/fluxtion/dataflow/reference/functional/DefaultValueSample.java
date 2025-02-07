@@ -5,18 +5,17 @@
 
 package com.fluxtion.dataflow.reference.functional;
 
+
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
 
-public class BiMapSample {
+public class DefaultValueSample {
     public static void main(String[] args) {
-        var strings = DataFlowBuilder.subscribe(String.class);
+        var strings = DataFlowBuilder.subscribe(String.class).defaultValue("200");
         var ints = DataFlowBuilder.subscribe(Integer.class);
         DataFlow processor = DataFlowBuilder.mapBiFunction((a, b) -> Integer.parseInt(a) + b, strings, ints)
-                .console("biMap ans: {}")
+                .console("biMap with default value ans: {}")
                 .build();
-
-        processor.onEvent("500");
         processor.onEvent(55);
     }
 }

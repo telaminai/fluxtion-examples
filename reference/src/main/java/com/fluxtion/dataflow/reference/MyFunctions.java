@@ -1,4 +1,9 @@
-package dsl;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
+package com.fluxtion.dataflow.reference;
 
 public class MyFunctions {
 
@@ -24,7 +29,7 @@ public class MyFunctions {
     }
 
     public static double wordUpperCasePercentage(long longA, long longB) {
-        return (double) longA /longB;
+        return (double) longA / longB;
     }
 
     public static class SimpleMath {
