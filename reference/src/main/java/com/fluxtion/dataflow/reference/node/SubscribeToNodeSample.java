@@ -33,7 +33,6 @@ public class SubscribeToNodeSample {
     @Getter
     @ToString
     public static class MyComplexNode {
-
         private String in;
 
         @OnEventHandler
@@ -41,6 +40,5 @@ public class SubscribeToNodeSample {
             this.in = in;
             return true;
         }
-
     }
 }
