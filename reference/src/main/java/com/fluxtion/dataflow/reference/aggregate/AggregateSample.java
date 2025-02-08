@@ -15,7 +15,7 @@ import com.fluxtion.dataflow.runtime.flowfunction.helpers.Collectors;
 
 public class AggregateSample {
 
-    public record ResetList() {}
+    public record ResetList() { }
 
     public static void main(String[] args) {
         var resetSignal = DataFlowBuilder.subscribe(ResetList.class).console("\n--- RESET ---");

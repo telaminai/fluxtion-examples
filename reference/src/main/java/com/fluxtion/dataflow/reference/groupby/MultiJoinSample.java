@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-package com.fluxtion.dataflow.reference.functional;
+package com.fluxtion.dataflow.reference.groupby;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.builder.flowfunction.MultiJoinBuilder;

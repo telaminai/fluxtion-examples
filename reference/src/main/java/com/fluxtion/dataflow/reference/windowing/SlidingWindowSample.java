@@ -5,7 +5,6 @@
 
 package com.fluxtion.dataflow.reference.windowing;
 
-
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;

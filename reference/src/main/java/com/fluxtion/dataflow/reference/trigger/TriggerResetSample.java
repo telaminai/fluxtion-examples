@@ -5,7 +5,6 @@
 
 package com.fluxtion.dataflow.reference.trigger;
 
-
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.reference.node.SubscribeToNodeSample;
 import com.fluxtion.dataflow.runtime.DataFlow;

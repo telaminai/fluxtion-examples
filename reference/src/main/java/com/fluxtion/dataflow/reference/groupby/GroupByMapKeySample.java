@@ -5,7 +5,6 @@
 
 package com.fluxtion.dataflow.reference.groupby;
 
-
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
@@ -14,7 +13,7 @@ import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
 
 public class GroupByMapKeySample {
 
-    public record Pupil(int year, String sex, String name) {}
+    public record Pupil(int year, String sex, String name) { }
 
     public static void main(String[] args) {
         DataFlow processor = DataFlowBuilder.subscribe(Pupil.class)

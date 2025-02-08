@@ -5,14 +5,13 @@
 
 package com.fluxtion.dataflow.reference.groupby;
 
-
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
 import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
 
 public class GroupBySample {
-    public record ResetList() {}
+    public record ResetList() { }
 
     public static void main(String[] args) {
         var resetSignal = DataFlowBuilder.subscribe(ResetList.class).console("\n--- RESET ---");
