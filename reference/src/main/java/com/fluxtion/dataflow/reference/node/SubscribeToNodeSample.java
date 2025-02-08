@@ -6,7 +6,6 @@
 package com.fluxtion.dataflow.reference.node;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.builder.generation.config.EventProcessorConfig;
 import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.annotations.OnEventHandler;
 import com.fluxtion.dataflow.runtime.flowfunction.helpers.Collectors;
@@ -14,22 +13,6 @@ import lombok.Getter;
 import lombok.ToString;
 
 public class SubscribeToNodeSample {
-
-    @Getter
-    @ToString
-    public static class MyComplexNode {
-        private String in;
-
-        @OnEventHandler
-        public boolean stringUpdate(String in) {
-            this.in = in;
-            return true;
-        }
-    }
-
-    public static void buildGraph(EventProcessorConfig processorConfig) {
-
-    }
 
     public static void main(String[] args) {
         DataFlow processor = DataFlowBuilder.subscribeToNode(new MyComplexNode())
@@ -45,5 +28,19 @@ public class SubscribeToNodeSample {
         processor.onEvent("D");
         processor.onEvent("E");
         processor.onEvent("F");
+    }
+
+    @Getter
+    @ToString
+    public static class MyComplexNode {
+
+        private String in;
+
+        @OnEventHandler
+        public boolean stringUpdate(String in) {
+            this.in = in;
+            return true;
+        }
+
     }
 }

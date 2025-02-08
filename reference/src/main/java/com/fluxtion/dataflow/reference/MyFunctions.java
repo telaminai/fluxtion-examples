@@ -11,7 +11,7 @@ public class MyFunctions {
     private long upperCaseCharCount;
 
     public static long charCount(String s) {
-        return s.length();
+        return s.replaceAll("\\s", "").length();
     }
 
     public static long upperCaseCharCount(String s) {

@@ -8,48 +8,10 @@ package com.fluxtion.dataflow.reference.aggregate;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.flowfunction.aggregate.AggregateFlowFunction;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class CustomAggregateFunctionSample {
-    public static class DateRangeAggregate implements AggregateFlowFunction<LocalDate, String, DateRangeAggregate> {
-        private LocalDate startDate;
-        private LocalDate endDate;
-        private String message;
-        private final transient DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        @Override
-        public String reset() {
-            System.out.println("--- RESET ---");
-            startDate = null;
-            endDate = null;
-            message = null;
-            return get();
-        }
-
-        @Override
-        public String get() {
-            return message;
-        }
-
-        @Override
-        public String aggregate(LocalDate input) {
-            startDate = startDate == null ? input : startDate;
-            endDate = endDate == null ? input : endDate;
-            if (input.isBefore(startDate)) {
-                startDate = input;
-            } else if (input.isAfter(endDate)) {
-                endDate = input;
-            } else {
-                //RETURN NULL -> NO CHANGE NOTIFICATIONS FIRED
-                return null;
-            }
-            message = formatter.format(startDate) + " - " + formatter.format(endDate);
-            return message;
-        }
-    }
 
     public static void main(String[] args) {
         DataFlow processor = DataFlowBuilder.subscribe(LocalDate.class)
