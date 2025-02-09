@@ -8,8 +8,8 @@ package com.fluxtion.dataflow.reference.eventfeed;
 
 import com.fluxtion.agrona.collections.ArrayUtil;
 import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.agentrunner.EventFeedAgent;
 import com.fluxtion.dataflow.runtime.event.NamedFeedEventImpl;
+import com.fluxtion.dataflow.runtime.eventfeed.EventFeedAgent;
 import com.fluxtion.dataflow.runtime.node.EventSubscription;
 
 import java.util.concurrent.ConcurrentLinkedQueue;

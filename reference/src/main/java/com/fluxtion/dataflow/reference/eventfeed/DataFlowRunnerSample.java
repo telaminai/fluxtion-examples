@@ -7,7 +7,7 @@ package com.fluxtion.dataflow.reference.eventfeed;
 
 import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.agentrunner.DataFlowAgentRunner;
+import com.fluxtion.dataflow.runtime.eventfeed.DataFlowAgentRunner;
 
 public class DataFlowRunnerSample {
     public static void main(String[] args) throws InterruptedException {
