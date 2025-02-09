@@ -10,15 +10,21 @@ import com.fluxtion.dataflow.runtime.DataFlow;
 import com.fluxtion.dataflow.runtime.agentrunner.DataFlowAgentRunner;
 
 public class DataFlowRunnerSample {
-    public static void main(String[] args) {
-        DataFlow dataFlow = DataFlowBuilder.subscribe(String.class)
+    public static void main(String[] args) throws InterruptedException {
+        MyEventFeed myFeed = new MyEventFeed("myFeed");
+        DataFlow dataFlow = DataFlowBuilder.subscribeToFeed("myFeed", String.class)
                 .console("received {}")
                 .build();
 
         DataFlowAgentRunner runner = new DataFlowAgentRunner();
         runner.addDataFlow(dataFlow);
-        runner.addFeed(new MyEventFeed("myFeed"));
+        runner.addFeed(myFeed);
 
         runner.start();
+
+        for (int i = 0; i < 10; i++) {
+            Thread.sleep(1_000);
+            myFeed.publish("count-" + i);
+        }
     }
 }

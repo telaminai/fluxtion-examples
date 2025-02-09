@@ -5,31 +5,33 @@
 
 package com.fluxtion.dataflow.runtime.agentrunner;
 
-import com.fluxtion.agrona.concurrent.AgentRunner;
-import com.fluxtion.agrona.concurrent.BackoffIdleStrategy;
-import com.fluxtion.agrona.concurrent.UnsafeBuffer;
+import com.fluxtion.agrona.concurrent.*;
 import com.fluxtion.agrona.concurrent.status.AtomicCounter;
 import com.fluxtion.dataflow.runtime.DataFlow;
+import lombok.extern.java.Log;
 
+@Log
 public class DataFlowAgentRunner {
 
     private final AtomicCounter errorCounter = new AtomicCounter(new UnsafeBuffer(new byte[4096]), 0);
     private final DataFlowAgent agent = new DataFlowAgent("dataFlowIOAgentRunner");
-    private final AgentRunner agentRunner = new AgentRunner(
-            new BackoffIdleStrategy(10, 10, 1_000, 1_000_000),
-            this::errorHandler,
-            errorCounter,
-            agent
-    );
+    private final AgentRunner agentRunner;
+
+    public DataFlowAgentRunner() {
+        this(new BackoffIdleStrategy(10, 10, 1_000_000, 1_000_000_000));
+    }
+
+    public DataFlowAgentRunner(IdleStrategy idleStrategy) {
+        this.agentRunner = new AgentRunner(
+                idleStrategy,
+                this::errorHandler,
+                errorCounter,
+                agent
+        );
+    }
 
     public DataFlowAgentRunner addFeed(EventFeedAgent feed) {
         start();
-
-        //TODO use status to determine whether to progress
-//        agent.status()
-//        while (!agentRunner.isClosed()) {
-//            System.out.println("waiting for feed");
-//        }
         agent.addFeed(feed);
         return this;
     }
@@ -51,8 +53,11 @@ public class DataFlowAgentRunner {
     }
 
     public DataFlowAgentRunner start() {
-        if (!agentRunner.isClosed()) {
+        while (!agentRunner.isClosed()) {
             AgentRunner.startOnThread(agentRunner);
+        }
+        while (agent.status() != DynamicCompositeAgent.Status.ACTIVE) {
+            System.out.println("Waiting for the agent to be started...");
         }
         return this;
     }
@@ -65,6 +70,7 @@ public class DataFlowAgentRunner {
     }
 
     private void errorHandler(Throwable throwable) {
+        log.severe(throwable::getMessage);
+        throwable.printStackTrace(System.out);
     }
-
 }

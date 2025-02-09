@@ -5,27 +5,31 @@
 
 package com.fluxtion.dataflow.runtime.agentrunner;
 
+import com.fluxtion.agrona.collections.ArrayUtil;
 import com.fluxtion.agrona.concurrent.DynamicCompositeAgent;
 import com.fluxtion.agrona.concurrent.OneToOneConcurrentArrayQueue;
 import com.fluxtion.dataflow.runtime.DataFlow;
+import com.fluxtion.dataflow.runtime.input.NamedFeed;
+import lombok.extern.java.Log;
 
+@Log
 class DataFlowAgent extends DynamicCompositeAgent {
 
     private final OneToOneConcurrentArrayQueue<EventFeedAgent> feedToAddList;
     private final OneToOneConcurrentArrayQueue<EventFeedAgent> feedToRemove;
-    private final OneToOneConcurrentArrayQueue<EventFeedAgent> feeds;
+    private EventFeedAgent[] feeds;
     private final OneToOneConcurrentArrayQueue<DataFlow> dataFlowsToAdd;
     private final OneToOneConcurrentArrayQueue<DataFlow> dataFlowsToRemove;
-    private final OneToOneConcurrentArrayQueue<DataFlow> dataFlows;
+    private DataFlow[] dataFlows;
 
     public DataFlowAgent(String roleName) {
         super(roleName);
         feedToAddList = new OneToOneConcurrentArrayQueue<>(128);
         feedToRemove = new OneToOneConcurrentArrayQueue<>(128);
-        feeds = new OneToOneConcurrentArrayQueue<>(128);
+        feeds = new EventFeedAgent[0];
         dataFlowsToAdd = new OneToOneConcurrentArrayQueue<>(128);
         dataFlowsToRemove = new OneToOneConcurrentArrayQueue<>(128);
-        dataFlows = new OneToOneConcurrentArrayQueue<>(128);
+        dataFlows = new DataFlow[0];
     }
 
     public void addFeed(EventFeedAgent feed) {
@@ -64,23 +68,39 @@ class DataFlowAgent extends DynamicCompositeAgent {
 
     private void checkForRegistrationUpdates() {
         feedToAddList.drain(feed -> {
-            feeds.add(feed);
-            dataFlows.forEach(dataFlow -> dataFlow.addEventFeed(feed));
+            feeds = ArrayUtil.add(feeds, feed);
+
+            for (DataFlow dataFlow : dataFlows) {
+                log.info(() -> "adding eventFeed " + feed + " to dataflow " + dataFlow);
+                dataFlow.registerService(feed, NamedFeed.class);
+            }
         });
 
         feedToRemove.drain(feed -> {
-            feeds.remove(feed);
-            dataFlows.forEach(dataFlow -> dataFlow.removeEventFeed(feed));
+            feeds = ArrayUtil.remove(feeds, feed);
+
+            for (DataFlow dataFlow : dataFlows) {
+                log.info(() -> "removing eventFeed " + feed + " to dataflow " + dataFlow);
+                dataFlow.removeEventFeed(feed);
+            }
         });
 
         dataFlowsToAdd.drain(dataFlow -> {
-            dataFlows.add(dataFlow);
-            feeds.forEach(feed -> feed.registerSubscriber(dataFlow));
+            dataFlows = ArrayUtil.add(dataFlows, dataFlow);
+
+            for (EventFeedAgent feed : feeds) {
+                log.info(() -> "register subscriber " + dataFlow + " with feed " + feed);
+                feed.registerSubscriber(dataFlow);
+            }
         });
 
         dataFlowsToRemove.drain(dataFlow -> {
-            dataFlows.remove(dataFlow);
-            feeds.forEach(feed -> feed.removeAllSubscriptions(dataFlow));
+            dataFlows = ArrayUtil.remove(dataFlows, dataFlow);
+
+            for (EventFeedAgent feed : feeds) {
+                log.info(() -> "deregister subscriber " + dataFlow + " with feed " + feed);
+                feed.removeAllSubscriptions(dataFlow);
+            }
         });
     }
 }
