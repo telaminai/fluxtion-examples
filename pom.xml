@@ -15,13 +15,14 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dataflow.version>1.0.2</dataflow.version>
+        <dataflow.version>1.0.3</dataflow.version>
     </properties>
 
     <modules>
         <module>getstarted</module>
         <module>reference</module>
         <module>cookbook</module>
+        <module>dataflow-connectors</module>
     </modules>
 
     <repositories>
@@ -55,6 +56,12 @@
             <groupId>com.fluxtion.dataflow</groupId>
             <artifactId>dataflow-builder</artifactId>
             <version>${dataflow.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fluxtion.dataflow</groupId>
+            <artifactId>dataflow-connectors</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
