@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.fluxtion.dataflow</groupId>
-        <artifactId>dataflow.examples</artifactId>
+        <groupId>com.telamin.fluxtion</groupId>
+        <artifactId>fluxtion-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>examples-getstarted</artifactId>
+    <artifactId>fluxtion.examples-getstarted</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>dataFlow.examples :: getstarted</name>
+    <name>fluxtion.examples :: getting-started</name>
 
     <dependencies>
         <dependency>
