@@ -6,10 +6,9 @@
 package com.fluxtion.dataflow.reference.node;
 
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.reference.MyFunctions;
-import com.fluxtion.dataflow.reference.MyFunctions.SimpleMath;
-import com.fluxtion.dataflow.runtime.DataFlow;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
 
 public class WrapFunctionsSample {
 
@@ -27,7 +26,7 @@ public class WrapFunctionsSample {
                 .map(myFunctions::totalUpperCaseCharCount)
                 .console("upperCharCountAggregate: {}");
 
-        DataFlowBuilder.mapBiFunction(new SimpleMath()::updatePercentage, upperCharCount, charCount)
+        DataFlowBuilder.mapBiFunction(new MyFunctions.SimpleMath()::updatePercentage, upperCharCount, charCount)
                 .console("percentage chars upperCase all words:{}");
 
         //STATELESS FUNCTION

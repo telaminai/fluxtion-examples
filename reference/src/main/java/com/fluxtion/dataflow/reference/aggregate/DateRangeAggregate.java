@@ -5,7 +5,7 @@
 
 package com.fluxtion.dataflow.reference.aggregate;
 
-import com.fluxtion.dataflow.runtime.flowfunction.aggregate.AggregateFlowFunction;
+import com.telamin.fluxtion.runtime.flowfunction.aggregate.AggregateFlowFunction;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

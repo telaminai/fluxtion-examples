@@ -5,7 +5,7 @@
 
 package com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc;
 
-import com.fluxtion.dataflow.runtime.annotations.AfterEvent;
+import com.telamin.fluxtion.runtime.annotations.AfterEvent;
 import lombok.Getter;
 import lombok.ToString;
 

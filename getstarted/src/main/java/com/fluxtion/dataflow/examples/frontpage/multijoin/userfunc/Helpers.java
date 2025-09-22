@@ -5,7 +5,8 @@
 
 package com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc;
 
-import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
+
+import com.telamin.fluxtion.runtime.flowfunction.groupby.GroupBy;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

@@ -5,7 +5,7 @@
 
 package com.fluxtion.dataflow.reference.functional;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
 
 public class ReEntrantEventSample {
     

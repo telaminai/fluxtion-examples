@@ -9,9 +9,9 @@
 
 package com.fluxtion.dataflow.reference.aggregate;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.flowfunction.helpers.Collectors;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+import com.telamin.fluxtion.runtime.flowfunction.helpers.Collectors;
 
 public class AggregateSample {
 

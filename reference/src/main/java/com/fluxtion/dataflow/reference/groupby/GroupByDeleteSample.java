@@ -5,10 +5,10 @@
 
 package com.fluxtion.dataflow.reference.groupby;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.annotations.OnEventHandler;
-import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+import com.telamin.fluxtion.runtime.annotations.OnEventHandler;
+import com.telamin.fluxtion.runtime.flowfunction.groupby.GroupBy;
 
 import java.util.List;
 

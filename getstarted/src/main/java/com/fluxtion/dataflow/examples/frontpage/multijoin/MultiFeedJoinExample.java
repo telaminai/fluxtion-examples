@@ -16,12 +16,12 @@
 //SOURCES userfunc/SupportContactEvent.java
 package com.fluxtion.dataflow.examples.frontpage.multijoin;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
 import com.fluxtion.dataflow.examples.frontpage.multijoin.userfunc.*;
-import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.flowfunction.aggregate.function.primitive.DoubleAverageFlowFunction;
-import com.fluxtion.dataflow.runtime.flowfunction.groupby.GroupBy;
-import com.fluxtion.dataflow.runtime.time.FixedRateTrigger;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+import com.telamin.fluxtion.runtime.flowfunction.aggregate.function.primitive.DoubleAverageFlowFunction;
+import com.telamin.fluxtion.runtime.flowfunction.groupby.GroupBy;
+import com.telamin.fluxtion.runtime.time.FixedRateTrigger;
 
 import java.util.Random;
 import java.util.concurrent.Executors;

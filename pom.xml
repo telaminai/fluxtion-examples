@@ -21,8 +21,8 @@
     <modules>
         <module>getstarted</module>
         <module>reference</module>
-        <module>cookbook</module>
-        <module>dataflow-connectors</module>
+<!--        <module>cookbook</module>-->
+<!--        <module>dataflow-connectors</module>-->
     </modules>
 
     <repositories>
@@ -43,7 +43,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.36</version>
+                            <version>1.18.42</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -52,17 +52,6 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>com.fluxtion.dataflow</groupId>
-            <artifactId>dataflow-builder</artifactId>
-            <version>${dataflow.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fluxtion.dataflow</groupId>
-            <artifactId>dataflow-connectors</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

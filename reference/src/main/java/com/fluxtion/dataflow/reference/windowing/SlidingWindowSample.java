@@ -5,9 +5,9 @@
 
 package com.fluxtion.dataflow.reference.windowing;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+import com.telamin.fluxtion.runtime.flowfunction.helpers.Aggregates;
 
 import java.util.Random;
 import java.util.concurrent.Executors;

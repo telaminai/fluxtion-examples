@@ -5,9 +5,9 @@
 
 package com.fluxtion.dataflow.reference.functional;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.flowfunction.Stateful;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+import com.telamin.fluxtion.runtime.flowfunction.Stateful;
 
 public class ResetFunctionSample {
 

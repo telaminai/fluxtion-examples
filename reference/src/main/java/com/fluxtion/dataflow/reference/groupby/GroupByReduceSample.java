@@ -5,8 +5,8 @@
 
 package com.fluxtion.dataflow.reference.groupby;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.runtime.flowfunction.helpers.Aggregates;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.flowfunction.helpers.Aggregates;
 
 public class GroupByReduceSample {
 

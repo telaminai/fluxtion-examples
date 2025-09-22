@@ -5,11 +5,11 @@
 
 package com.fluxtion.dataflow.reference.eventfeed;
 
-import com.fluxtion.dataflow.builder.DataFlowBuilder;
-import com.fluxtion.dataflow.runtime.DataFlow;
-import com.fluxtion.dataflow.runtime.connector.DataFlowConnector;
-import com.fluxtion.dataflow.runtime.connector.FileEventFeed;
-import com.fluxtion.dataflow.runtime.eventfeed.ReadStrategy;
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+import com.telamin.fluxtion.runtime.connector.DataFlowConnector;
+import com.telamin.fluxtion.runtime.connector.FileEventFeed;
+import com.telamin.fluxtion.runtime.eventfeed.ReadStrategy;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
