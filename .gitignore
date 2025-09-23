@@ -37,3 +37,6 @@ build/
 ### Mac OS ###
 .DS_Store
 /reference/data/log/
+/.venv/bin/
+/.venv/include/
+/.venv/lib/
