@@ -23,14 +23,6 @@
         <module>reference</module>
     </modules>
 
-    <repositories>
-        <repository>
-            <id>repsy-fluxtion-public</id>
-            <name>Fluxtion public repo</name>
-            <url>https://repo.repsy.io/mvn/fluxtion/fluxtion-public</url>
-        </repository>
-    </repositories>
-
     <build>
         <plugins>
             <plugin>
