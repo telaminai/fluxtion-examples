@@ -1,0 +1,22 @@
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
+package com.telamin.fluxtion.example.reference.functional;
+
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+
+public class BiMapSample {
+    public static void main(String[] args) {
+        var strings = DataFlowBuilder.subscribe(String.class);
+        var ints = DataFlowBuilder.subscribe(Integer.class);
+        DataFlow processor = DataFlowBuilder.mapBiFunction((a, b) -> Integer.parseInt(a) + b, strings, ints)
+                .console("biMap ans: {}")
+                .build();
+
+        processor.onEvent("500");
+        processor.onEvent(55);
+    }
+}

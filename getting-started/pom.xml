@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
             <artifactId>fluxtion-builder</artifactId>
-            <version>0.9.4</version>
+            <version>${fluxtion.version}</version>
         </dependency>
     </dependencies>
 </project>

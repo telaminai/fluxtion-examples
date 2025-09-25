@@ -1,0 +1,22 @@
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
+package com.telamin.fluxtion.example.reference.functional;
+
+import com.telamin.fluxtion.builder.DataFlowBuilder;
+import com.telamin.fluxtion.runtime.DataFlow;
+
+public class FilterSample {
+    public static void main(String[] args) {
+        DataFlow processor = DataFlowBuilder.subscribe(Integer.class)
+                .filter(i -> i > 10)
+                .console("int {} > 10 ")
+                .build();
+
+        processor.onEvent(1);
+        processor.onEvent(17);
+        processor.onEvent(4);
+    }
+}
