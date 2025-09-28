@@ -60,6 +60,7 @@ find a specific pattern.
 - Wrap functions: [WrapFunctionsSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/WrapFunctionsSample.java)
 - Subscribe to node: [SubscribeToNodeSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/SubscribeToNodeSample.java)
 - Push pattern: [PushSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/PushSample.java)
+- Map from node property: [MapFromNodePropertySample.java](src/main/java/com/telamin/fluxtion/example/reference/node/MapNodeSupplierSample.java)
 - Member variable supplier: [FlowSupplierAsMemberVariableSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/FlowSupplierAsMemberVariableSample.java)
 
 ## Event feeds and runners
