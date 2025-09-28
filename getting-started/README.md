@@ -17,8 +17,8 @@ tutorial series (Part 1–5) builds concepts step by step.
 - Tutorials (progressive walkthrough)
   - [TutorialPart1.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart1.java) — Basics: build a tiny flow to compute per-symbol running net quantity.
   - [TutorialPart2.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart2.java) — Sliding windows: per-symbol rolling average with thresholded alerts.
-  - [TutorialPart3.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart3.java) — Mix DSL with an imperative stateful node and lifecycle @Start/@Stop.
-  - [TutorialPart4.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart4.java) — Embed a DataFlow in a microservice with HTTP health/metrics and latency alerts.
+  - [TutorialPart3.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart3.java) — Mix DSL with an imperative stateful node and lifecycle callbacks.
+  - [TutorialPart4.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart4.java) — Embed a DataFlow in a HTTP microservice.
   - [TutorialPart5.java](src/main/java/com/telamin/fluxtion/example/tutorial/TutorialPart5.java) — Wire file feeds and sinks: read from a file, transform, and write to a file.
 
 ## How to run
