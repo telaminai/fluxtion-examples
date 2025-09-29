@@ -21,6 +21,7 @@
     <modules>
         <module>getting-started</module>
         <module>reference</module>
+        <module>compiler/aot-compiler</module>
     </modules>
 
     <build>
