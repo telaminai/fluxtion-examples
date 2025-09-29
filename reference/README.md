@@ -22,7 +22,7 @@ find a specific pattern.
 - Sink: [SinkExample.java](src/main/java/com/telamin/fluxtion/example/reference/functional/SinkExample.java)
 - Get node by id: [GetFlowNodeByIdExample.java](src/main/java/com/telamin/fluxtion/example/reference/functional/GetFlowNodeByIdExample.java)
 
-## Grouping and joins
+### Grouping and joins
 
 - Basic groupBy: [GroupBySample.java](src/main/java/com/telamin/fluxtion/example/reference/groupby/GroupBySample.java)
 - Group by specific fields: [GroupByFieldsSample.java](src/main/java/com/telamin/fluxtion/example/reference/groupby/GroupByFieldsSample.java)
@@ -42,26 +42,65 @@ find a specific pattern.
 - Tumbling groupBy (compound key): [TumblingGroupByCompoundKeySample.java](src/main/java/com/telamin/fluxtion/example/reference/groupby/TumblingGroupByCompoundKeySample.java)
 - Delete group entries: [GroupByDeleteSample.java](src/main/java/com/telamin/fluxtion/example/reference/groupby/GroupByDeleteSample.java)
 
-## Windowing and triggers
+### Windowing and triggers
 
 - Sliding window: [SlidingWindowSample.java](src/main/java/com/telamin/fluxtion/example/reference/windowing/SlidingWindowSample.java)
 - Tumbling window: [TumblingWindowSample.java](src/main/java/com/telamin/fluxtion/example/reference/windowing/TumblingWindowSample.java)
 - Tumbling window with trigger: [TumblingTriggerSample.java](src/main/java/com/telamin/fluxtion/example/reference/windowing/TumblingTriggerSample.java)
 
-## Triggers
+### Triggers
 
 - Update trigger: [TriggerUpdateSample.java](src/main/java/com/telamin/fluxtion/example/reference/trigger/TriggerUpdateSample.java)
 - Publish trigger: [TriggerPublishSample.java](src/main/java/com/telamin/fluxtion/example/reference/trigger/TriggerPublishSample.java)
 - Reset trigger: [TriggerResetSample.java](src/main/java/com/telamin/fluxtion/example/reference/trigger/TriggerResetSample.java)
 - Publish override: [TriggerPublishOverrideSample.java](src/main/java/com/telamin/fluxtion/example/reference/trigger/TriggerPublishOverrideSample.java)
 
-## Working with nodes
+### Working with nodes
 
 - Wrap functions: [WrapFunctionsSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/WrapFunctionsSample.java)
 - Subscribe to node: [SubscribeToNodeSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/SubscribeToNodeSample.java)
 - Push pattern: [PushSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/PushSample.java)
 - Map from node property: [MapFromNodePropertySample.java](src/main/java/com/telamin/fluxtion/example/reference/node/MapNodeSupplierSample.java)
 - Member variable supplier: [FlowSupplierAsMemberVariableSample.java](src/main/java/com/telamin/fluxtion/example/reference/node/FlowSupplierAsMemberVariableSample.java)
+
+## Imperative node examples
+
+### Advanced
+
+- Batch support: [BatchSupport.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/advanced/BatchSupport.java)
+- Collection support: [CollectionSupport.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/advanced/CollectionSupport.java)
+- Fork/join support: [ForkJoinSupport.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/advanced/ForkJoinSupport.java)
+
+### Callbacks
+
+- After event callback: [AfterEventCallback.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/callback/AfterEventCallback.java)
+- After trigger callback: [AfterTriggerCallback.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/callback/AfterTriggerCallback.java)
+- Lifecycle callback: [LifecycleCallback.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/callback/LifecycleCallback.java)
+
+### Filtering
+
+- Static filtering: [StaticFiltering.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/filtering/StaticFiltering.java)
+- Variable filtering: [VariableFiltering.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/filtering/VariableFiltering.java)
+
+### Subscribe
+
+- Multiple event types: [MultipleEventTypes.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/subscribe/MultipleEventTypes.java)
+- Unknown event handling: [UnknownEventHandling.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/subscribe/UnknownEventHandling.java)
+- Wrap node: [WrapNode.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/subscribe/WrapNode.java)
+
+### Triggering
+
+- Conditional trigger children: [ConditionalTriggerChildren.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggering/ConditionalTriggerChildren.java)
+- Identify trigger parent: [IdentifyTriggerParent.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggering/IdentifyTriggerParent.java)
+- Identify trigger parent by id: [IdentifyTriggerParentById.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggering/IdentifyTriggerParentById.java)
+- Push trigger: [PushTrigger.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggering/PushTrigger.java)
+- Trigger children: [TriggerChildren.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggering/TriggerChildren.java)
+
+### Trigger overrides
+
+- Invert dirty trigger: [InvertDirtyTrigger.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggeroverride/InvertDirtyTrigger.java)
+- No-propagate handler: [NoPropagateHandler.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggeroverride/NoPropagateHandler.java)
+- Single trigger override: [SingleTriggerOverride.java](src/main/java/com/telamin/fluxtion/example/reference/bindnode/triggeroverride/SingleTriggerOverride.java)
 
 ## Event feeds and runners
 
