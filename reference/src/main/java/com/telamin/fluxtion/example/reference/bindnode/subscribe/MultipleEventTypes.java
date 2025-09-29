@@ -3,17 +3,23 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-package com.telamin.fluxtion.example.reference.bindnode;
+package com.telamin.fluxtion.example.reference.bindnode.subscribe;
 
 import com.telamin.fluxtion.builder.DataFlowBuilder;
 import com.telamin.fluxtion.runtime.annotations.OnEventHandler;
 
-public class WrapNode {
+public class MultipleEventTypes {
 
     public static class MyNode {
         @OnEventHandler
         public boolean handleStringEvent(String stringToProcess) {
-            System.out.println("received:" + stringToProcess);
+            System.out.println("String received:" + stringToProcess);
+            return true;
+        }
+
+        @OnEventHandler
+        public boolean handleIntEvent(int intToProcess) {
+            System.out.println("Int received:" + intToProcess);
             return true;
         }
     }
@@ -24,5 +30,6 @@ public class WrapNode {
                 .build();
 
         processor.onEvent("TEST");
+        processor.onEvent(16);
     }
 }
