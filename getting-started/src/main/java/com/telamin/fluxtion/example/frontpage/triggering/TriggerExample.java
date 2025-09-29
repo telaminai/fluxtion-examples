@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-//DEPS com.telamin.fluxtion:fluxtion-builder:0.9.5
+//DEPS com.telamin.fluxtion:fluxtion-builder:0.9.6
 //JAVA 25
 
 package com.telamin.fluxtion.example.frontpage.triggering;

@@ -4,7 +4,7 @@
  */
 
 //JAVA 25
-//DEPS com.telamin.fluxtion:fluxtion-builder:0.9.5
+//DEPS com.telamin.fluxtion:fluxtion-builder:0.9.6
 //DEPS org.projectlombok:lombok:1.18.42
 //COMPILE_OPTIONS -proc:full
 //SOURCES userfunc/Helpers.java
