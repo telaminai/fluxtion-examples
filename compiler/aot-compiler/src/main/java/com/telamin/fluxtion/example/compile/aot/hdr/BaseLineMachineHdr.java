@@ -1,5 +1,9 @@
-package com.telamin.fluxtion.example.compile.aot.hdr;
+/*
+ * SPDX-File Copyright: © 2025.  Gregory Higgins <greg.higgins@v12technology.com>
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 
+package com.telamin.fluxtion.example.compile.aot.hdr;
 
 import com.telamin.fluxtion.example.compile.aot.DemoPriceCalculatorMain;
 import com.telamin.fluxtion.example.compile.aot.generated.PriceLadderProcessor;
@@ -7,9 +11,10 @@ import com.telamin.fluxtion.example.compile.aot.node.PriceDistributor;
 import com.telamin.fluxtion.example.compile.aot.pricer.PriceLadder;
 import org.HdrHistogram.Histogram;
 
-public class PriceLadderHistogramExample {
+
+public class BaseLineMachineHdr {
     // A Histogram covering the range from 1 nsec to 1 hour with 3 decimal point resolution:
-    static Histogram histogram = new Histogram(10_000_000_000L, 4);
+    static Histogram histogram = new Histogram(3600000000000L, 3);
 
     static public volatile PriceLadderProcessor priceProcessor;
 
@@ -20,7 +25,7 @@ public class PriceLadderHistogramExample {
 
     static void processPriceLadderUpdate(PriceLadder priceLadder) {
         long startTime = System.nanoTime();
-        priceProcessor.newPriceLadder(priceLadder);
+//        priceProcessor.newPriceLadder(priceLadder);
         long endTime = System.nanoTime();
         histogram.recordValue(endTime - startTime);
     }

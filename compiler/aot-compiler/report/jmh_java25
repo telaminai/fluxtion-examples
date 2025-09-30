@@ -1,0 +1,121 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/greghiggins/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# JMH version: 1.37
+# VM version: JDK 25, OpenJDK 64-Bit Server VM, 25+36-3489
+# VM invoker: /Users/greghiggins/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=51944 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.telamin.fluxtion.example.compile.aot.jmh.PriceLadderBenchmark.throughPut_BranchingProcessor
+
+# Run progress: 0.00% complete, ETA 00:02:40
+# Warmup Fork: 1 of 1
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/greghiggins/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Do Setup
+TearDown - generate new random price ladders
+51642391.390 ops/s
+# Warmup Iteration   2: TearDown - generate new random price ladders
+51102204.899 ops/s
+Iteration   1: TearDown - generate new random price ladders
+51095949.994 ops/s
+Iteration   2: TearDown - generate new random price ladders
+50961405.023 ops/s
+
+# Run progress: 25.00% complete, ETA 00:02:01
+# Fork: 1 of 1
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/greghiggins/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Do Setup
+TearDown - generate new random price ladders
+51105598.629 ops/s
+# Warmup Iteration   2: TearDown - generate new random price ladders
+50442595.600 ops/s
+Iteration   1: TearDown - generate new random price ladders
+50898328.781 ops/s
+Iteration   2: TearDown - generate new random price ladders
+50846923.318 ops/s
+
+
+Result "com.telamin.fluxtion.example.compile.aot.jmh.PriceLadderBenchmark.throughPut_BranchingProcessor":
+  50872626.050 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 25, OpenJDK 64-Bit Server VM, 25+36-3489
+# VM invoker: /Users/greghiggins/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home/bin/java
+# VM options: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=51944 -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 2 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.telamin.fluxtion.example.compile.aot.jmh.PriceLadderBenchmark.avgTime_BranchingProcessor
+
+# Run progress: 50.00% complete, ETA 00:01:21
+# Warmup Fork: 1 of 1
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/greghiggins/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Do Setup
+TearDown - generate new random price ladders
+19.618 ns/op
+# Warmup Iteration   2: TearDown - generate new random price ladders
+19.835 ns/op
+Iteration   1: TearDown - generate new random price ladders
+19.718 ns/op
+Iteration   2: TearDown - generate new random price ladders
+19.761 ns/op
+
+# Run progress: 75.00% complete, ETA 00:00:40
+# Fork: 1 of 1
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.openjdk.jmh.util.Utils (file:/Users/greghiggins/.m2/repository/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jmh.util.Utils
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+# Warmup Iteration   1: Do Setup
+TearDown - generate new random price ladders
+21.308 ns/op
+# Warmup Iteration   2: TearDown - generate new random price ladders
+20.841 ns/op
+Iteration   1: TearDown - generate new random price ladders
+20.287 ns/op
+Iteration   2: TearDown - generate new random price ladders
+20.181 ns/op
+
+
+Result "com.telamin.fluxtion.example.compile.aot.jmh.PriceLadderBenchmark.avgTime_BranchingProcessor":
+  20.234 ns/op
+
+
+# Run complete. Total time: 00:02:42
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                            Mode  Cnt         Score   Error  Units
+PriceLadderBenchmark.throughPut_BranchingProcessor  thrpt    2  50872626.050          ops/s
+PriceLadderBenchmark.avgTime_BranchingProcessor      avgt    2        20.234          ns/op
+
+Process finished with exit code 0
