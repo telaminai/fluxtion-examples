@@ -40,7 +40,7 @@
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
             <artifactId>fluxtion-full-compiler</artifactId>
-            <version>1.0.20-SNAPSHOT</version>
+            <version>1.0.20</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
