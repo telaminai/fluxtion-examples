@@ -20,7 +20,7 @@ public class TriggerExample {
                 .resetTrigger(DataFlowBuilder.subscribeToSignal("resetTrigger"))
                 .filter(i -> i != 0)
                 .publishTriggerOverride(DataFlowBuilder.subscribeToSignal("publishSumTrigger"))
-                .console("Current sun:{}")
+                .console("Current sum:{}")
                 .build();
 
         sumDataFlow.onEvent(10);
