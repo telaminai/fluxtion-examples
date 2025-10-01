@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>fluxtion.examples-aot-compiler</artifactId>
+    <name>telamin :: fluxtion.examples-aot-compiler</name>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

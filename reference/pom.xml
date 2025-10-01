@@ -13,7 +13,8 @@
     <artifactId>fluxtion.examples-reference</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>fluxtion.examples :: reference</name>
+    <name>telamin :: fluxtion.examples-reference</name>
+
     <dependencies>
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>

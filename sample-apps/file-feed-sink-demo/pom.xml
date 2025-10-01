@@ -12,7 +12,8 @@
     </parent>
 
     <artifactId>file-feed-sink-demo</artifactId>
-    <name>sample-apps.file-feed-sink-demo</name>
+    <name>telamin :: fluxtion.sample-apps.file-feed-sink-demo</name>
+
     <packaging>jar</packaging>
     
     <properties>
