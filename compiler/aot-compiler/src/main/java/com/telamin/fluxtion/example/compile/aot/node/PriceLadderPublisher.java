@@ -29,5 +29,4 @@ public class PriceLadderPublisher implements @ExportService(propagate = false)Pr
         priceDistributor.setPriceLadder(LevelsCalculator.getLevelAdjustedPriceLadder());
         return true;
     }
-
 }
