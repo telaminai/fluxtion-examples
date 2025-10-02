@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
             <artifactId>fluxtion-full-compiler</artifactId>
-            <version>1.0.20</version>
+            <version>${fluxtion.compiler.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
