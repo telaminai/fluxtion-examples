@@ -11,6 +11,76 @@ This project showcases best practices for testing DataFlow-based applications. I
 - Examples of service mocking using Mockito
 - Event feed and sink substitution for testing
 
+## The class under test
+
+```java
+
+@Data
+public class OrderProcessor {
+
+    private PaymentService paymentService;
+    private InventoryService inventoryService;
+
+    private int totalOrdersProcessed = 0;
+    private double totalRevenue = 0.0;
+    private int failedOrders = 0;
+    private MessageSink<OrderSummary> summarySink;
+
+    @ServiceRegistered
+    public void registerServices(PaymentService paymentService, String name) {
+        this.paymentService = paymentService;
+    }
+
+    @ServiceRegistered
+    public void registerServices(InventoryService inventoryService, String name) {
+        this.inventoryService = inventoryService;
+    }
+
+    @ServiceRegistered
+    public void registerServices(MessageSink<OrderSummary> summarySink, String name) {
+        this.summarySink = summarySink;
+    }
+
+    @OnEventHandler
+    public boolean processOrder(Order order) {
+        // Check inventory
+        if (!inventoryService.checkStock(order.getProductId(), order.getQuantity())) {
+            failedOrders++;
+            publishSummary();
+            return false;
+        }
+
+        // Process payment
+        double totalAmount = order.getPrice() * order.getQuantity();
+        if (!paymentService.processPayment(order.getCustomerId(), totalAmount)) {
+            failedOrders++;
+            publishSummary();
+            return false;
+        }
+
+        // Update inventory
+        inventoryService.reduceStock(order.getProductId(), order.getQuantity());
+
+        // Update metrics
+        totalOrdersProcessed++;
+        totalRevenue += totalAmount;
+
+        publishSummary();
+        return true;
+    }
+
+    public OrderSummary getSummary() {
+        return new OrderSummary(totalOrdersProcessed, totalRevenue, failedOrders);
+    }
+
+    private void publishSummary() {
+        if (summarySink != null) {
+            summarySink.accept(getSummary());
+        }
+    }
+}
+```
+
 ## Key Concepts
 
 ### DataFlow is Single-Threaded and Easy to Test
@@ -18,19 +88,27 @@ This project showcases best practices for testing DataFlow-based applications. I
 A DataFlow processes events synchronously in a single thread. This makes testing straightforward:
 
 ```java
-// Create and initialize DataFlow
-EventProcessor<?> processor = DataFlowBuilder.newBuilder("orderProcessing")
-    .addNode(new OrderProcessor(), "orderProcessor")
-    .buildAndCompile();
+orderProcessor =new
 
-DataFlow dataFlow = processor.getDataFlow();
-dataFlow.init();
+OrderProcessor(paymentService, inventoryService);
+
+// Create and initialize DataFlow
+DataFlow dataFlow = DataFlowBuilder.subscribeToNode(orderProcessor)
+        .console("Received order: {}")
+        .map(o -> orderCounter.incrementAndGet())
+        .build();
+
+dataFlow.
+
+init();
 
 // Process an event
-dataFlow.onEvent(order);
+dataFlow.
+
+onEvent(order);
 
 // Immediately verify results - no async complexity!
-assertEquals(1, orderProcessor.getTotalOrdersProcessed());
+assertEquals(1,orderProcessor.getTotalOrdersProcessed());
 ```
 
 ### Business Logic Without Infrastructure
@@ -38,7 +116,7 @@ assertEquals(1, orderProcessor.getTotalOrdersProcessed());
 DataFlow separates business logic from infrastructure code. The `OrderProcessor` class contains pure business logic:
 
 - No database connections
-- No message queue clients  
+- No message queue clients
 - No file I/O
 - Just business rules and processing logic
 
@@ -49,6 +127,7 @@ This separation makes testing fast, reliable, and focused on business behavior.
 DataFlow uses `registerService()` to inject dependencies. In tests, you can easily substitute mock implementations:
 
 ```java
+
 @Mock
 private PaymentService paymentService;
 
@@ -58,7 +137,7 @@ private InventoryService inventoryService;
 @BeforeEach
 void setUp() {
     // ... create DataFlow ...
-    
+
     // Register mock services
     dataFlow.registerService(paymentService);
     dataFlow.registerService(inventoryService);
@@ -69,10 +148,10 @@ void testWithMocks() {
     // Setup mock behavior
     when(inventoryService.checkStock(anyString(), anyInt())).thenReturn(true);
     when(paymentService.processPayment(anyString(), anyDouble())).thenReturn(true);
-    
+
     // Test business logic with mocked dependencies
     dataFlow.onEvent(order);
-    
+
     // Verify interactions
     verify(paymentService).processPayment("CUST-123", 100.0);
 }
@@ -80,70 +159,85 @@ void testWithMocks() {
 
 ### Testing with DataFlow.addEventFeed
 
-In production, your application might use `DataConnector` to consume events from Kafka, files, or other sources. In tests, you can substitute these with `DataFlow.addEventFeed`:
+In production, your application might use `DataConnector` to consume events from Kafka, files, or other sources. In
+tests, you can substitute these with `DataFlow.addEventFeed`:
 
 ```java
+
 @Test
 void testWithEventFeed() {
     // Create test data
     List<Order> orders = List.of(
-        new Order("ORD-001", "CUST-123", "PROD-456", 2, 50.0),
-        new Order("ORD-002", "CUST-124", "PROD-789", 1, 100.0)
+            new Order("ORD-001", "CUST-123", "PROD-456", 2, 50.0),
+            new Order("ORD-002", "CUST-124", "PROD-789", 1, 100.0)
     );
-    
+
+    when(inventoryService.checkStock(anyString(), anyInt())).thenReturn(true);
+    when(paymentService.processPayment(anyString(), anyDouble())).thenReturn(true);
+
     // Create a simple test event feed
-    EventFeed<Order> testFeed = new EventFeed<>() {
+    EventFeed testFeed = new EventFeed() {
         @Override
-        public void subscribe() {
+        public void registerSubscriber(DataFlow dataFlow) {
             orders.forEach(dataFlow::onEvent);
         }
 
         @Override
-        public void unSubscribe() {
-            // No-op for test
+        public void subscribe(DataFlow dataFlow, Object o) {
+
+        }
+
+        @Override
+        public void unSubscribe(DataFlow dataFlow, Object o) {
+
+        }
+
+
+        @Override
+        public void removeAllSubscriptions(DataFlow dataFlow) {
+
         }
     };
-    
+
     // Add the feed and subscribe
     dataFlow.addEventFeed(testFeed);
-    testFeed.subscribe();
-    
+
     // Verify results
     assertEquals(2, orderProcessor.getTotalOrdersProcessed());
 }
 ```
 
-This approach lets you test event processing logic without requiring actual Kafka brokers, file systems, or other infrastructure.
+This approach lets you test event processing logic without requiring actual Kafka brokers, file systems, or other
+infrastructure.
 
 ### Testing with DataFlow.addIntSink and addSink
 
-In production, your application might publish results to databases, message queues, or files. In tests, you can capture outputs using sinks:
+In production, your application might publish results to databases, message queues, or files. In tests, you can capture
+outputs using sinks:
 
 ```java
-@Test
-void testWithIntSink() {
-    // Capture integer outputs
-    AtomicInteger processedCount = new AtomicInteger(0);
-    dataFlow.addIntSink("orderCount", processedCount::set);
-    
-    // Process events and publish to sink
-    dataFlow.onEvent(order1);
-    dataFlow.publishIntSignal("orderCount", orderProcessor.getTotalOrdersProcessed());
-    
-    // Verify captured value
-    assertEquals(1, processedCount.get());
+private final List<OrderSummary> summaries = new ArrayList<>();
+
+@BeforeEach
+void setUp() {
+    // ... create DataFlow ...
+
+    // add sink
+    dataFlow.registerService(summary -> summaries.add((OrderSummary) summary), MessageSink.class, "summaries");
 }
 
 @Test
 void testWithObjectSink() {
-    // Capture object outputs
-    List<OrderSummary> summaries = new ArrayList<>();
-    dataFlow.addSink("summaries", summaries::add);
-    
+    // Arrange - setup mock behavior
+    when(inventoryService.checkStock(anyString(), anyInt())).thenReturn(true);
+    when(paymentService.processPayment(anyString(), anyDouble())).thenReturn(true);
+
+    Order order = new Order("ORD-001", "CUST-123", "PROD-456", 2, 50.0);
+
     // Process and publish
     dataFlow.onEvent(order);
     dataFlow.publishObjectSignal(orderProcessor.getSummary());
-    
+
     // Verify captured objects
     assertEquals(1, summaries.size());
     assertEquals(100.0, summaries.get(0).getTotalRevenue());
@@ -187,20 +281,19 @@ mvn test -Dtest=OrderProcessorTest#testSuccessfulOrderProcessing
 
 ### Using IDE
 
-Open the project in your IDE and run the tests using the built-in test runner. The tests use JUnit 5 which is supported by all modern Java IDEs.
+Open the project in your IDE and run the tests using the built-in test runner. The tests use JUnit 5 which is supported
+by all modern Java IDEs.
 
 ## Test Coverage
 
-The example includes 8 comprehensive tests:
+The example includes 6 comprehensive tests:
 
 1. **testSuccessfulOrderProcessing** - Basic happy path testing
 2. **testOrderFailsDueToInsufficientInventory** - Failure scenario testing
 3. **testOrderFailsDueToPaymentDecline** - Another failure scenario
 4. **testMultipleOrders** - Batch event processing
-5. **testWithEventFeed** - Event feed substitution
-6. **testWithSinkCapture** - Int sink output capture
-7. **testWithObjectSinkCapture** - Object sink output capture
-8. **testServiceStateChanges** - Stateful service behavior
+5. **testWithDataFlowEvents** - Event processing through DataFlow
+6. **testServiceStateChanges** - Stateful service behavior
 
 ## Key Testing Patterns
 
@@ -209,14 +302,15 @@ The example includes 8 comprehensive tests:
 All tests follow the AAA pattern:
 
 ```java
+
 @Test
 void test() {
     // Arrange - setup test data and mocks
     when(service.method()).thenReturn(value);
-    
+
     // Act - execute the code under test
     dataFlow.onEvent(event);
-    
+
     // Assert - verify the results
     assertEquals(expected, actual);
     verify(service).method();
@@ -228,6 +322,7 @@ void test() {
 Common setup is done once per test:
 
 ```java
+
 @BeforeEach
 void setUp() {
     // Create DataFlow
@@ -245,13 +340,17 @@ Tests verify both direct results and service interactions:
 
 ```java
 // Verify state
-assertEquals(1, orderProcessor.getTotalOrdersProcessed());
+assertEquals(1,orderProcessor.getTotalOrdersProcessed());
 
 // Verify service calls
-verify(paymentService).processPayment("CUST-123", 100.0);
+verify(paymentService).
+
+processPayment("CUST-123",100.0);
 
 // Verify service was NOT called
-verify(inventoryService, never()).reduceStock(anyString(), anyInt());
+verify(inventoryService, never()).
+
+reduceStock(anyString(),anyInt());
 ```
 
 ## Dependencies
@@ -275,7 +374,8 @@ The project uses:
 
 ## Learn More
 
-For a complete guide on unit testing DataFlow applications, see the [Unit Testing DataFlow](../../fluxtion/docs/how-to/unit-testing-dataflow.md) how-to guide.
+For a complete guide on unit testing DataFlow applications, see
+the [Unit Testing DataFlow](../../fluxtion/docs/how-to/unit-testing-dataflow.md) how-to guide.
 
 ## License
 

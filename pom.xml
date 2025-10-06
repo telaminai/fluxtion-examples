@@ -25,6 +25,7 @@
         <module>compiler/aot-compiler</module>
         <module>sample-apps/file-feed-sink-demo</module>
         <module>sample-apps/log-config-demo</module>
+        <module>sample-apps/junit-testing-demo</module>
     </modules>
 
     <build>
