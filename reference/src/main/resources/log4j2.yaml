@@ -31,9 +31,12 @@ Configuration:
     logger:
       - name: com.telamin
         level: DEBUG
-        additivity: true
+        additivity: false
         AppenderRef:
-          ref: AppLog
+          - ref: AppLog
+            level: DEBUG
+          - ref: Console
+            level: INFO
       - name: errorLogger
         level: INFO
         additivity: false

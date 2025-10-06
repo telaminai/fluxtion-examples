@@ -40,3 +40,4 @@ build/
 /.venv/bin/
 /.venv/include/
 /.venv/lib/
+/sample-apps/log-config-demo/log/

@@ -1,0 +1,34 @@
+Configuration:
+#  status: WARN
+#  name: Default
+
+  Appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%msg%n"
+    File:
+      - name: AppLog
+        fileName: log/app.log
+        bufferedIO: true
+        PatternLayout:
+          Pattern: "%d{HH:mm:ss.SSS} [%t] %-6level%logger{36} %msg\n"
+        append: false
+
+  Loggers:
+    logger:
+      - name: com.telamin
+        level: DEBUG
+        additivity: false
+        AppenderRef:
+          - ref: AppLog
+            level: DEBUG
+          - ref: Console
+            level: INFO
+    Root:
+      level: INFO
+      AppenderRef:
+        - ref: Console
+        - ref: AppLog
+#          level: DEBUG

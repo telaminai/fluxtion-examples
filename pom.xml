@@ -15,7 +15,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fluxtion.version>0.9.10-SNAPSHOT</fluxtion.version>
+        <fluxtion.version>0.9.10</fluxtion.version>
         <fluxtion.compiler.version>1.0.21</fluxtion.compiler.version>
     </properties>
 
@@ -24,6 +24,7 @@
         <module>reference</module>
         <module>compiler/aot-compiler</module>
         <module>sample-apps/file-feed-sink-demo</module>
+        <module>sample-apps/log-config-demo</module>
     </modules>
 
     <build>
