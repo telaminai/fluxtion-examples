@@ -29,8 +29,8 @@ Configuration:
         append: false
   Loggers:
     logger:
-      - name: com.fluxtion
-        level: INFO
+      - name: com.telamin
+        level: DEBUG
         additivity: true
         AppenderRef:
           ref: AppLog
@@ -45,7 +45,8 @@ Configuration:
         AppenderRef:
           ref: EventAudit
     Root:
-      level: DEBUG
+      level: INFO
       AppenderRef:
         - ref: Console
-#        - ref: AppLog
+        - ref: AppLog
+#          level: DEBUG
