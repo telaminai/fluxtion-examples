@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>fluxtion.examples-aot-compiler</artifactId>
+    <artifactId>examples-aot-compiler</artifactId>
     <name>telamin :: fluxtion.examples-aot-compiler</name>
 
     <properties>

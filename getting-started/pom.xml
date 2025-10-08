@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>fluxtion.examples-getstarted</artifactId>
+    <artifactId>examples-getstarted</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>telamin :: fluxtion.examples.getting-started</name>
 

@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>fluxtion.examples-reference</artifactId>
+    <artifactId>examples-reference</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>telamin :: fluxtion.examples-reference</name>
