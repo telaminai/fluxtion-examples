@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>telamin :: fluxtion.examples.master</name>
+    <name>telamin :: fluxtion.examples</name>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
