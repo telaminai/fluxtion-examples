@@ -42,3 +42,8 @@ build/
 /.venv/lib/
 /sample-apps/log-config-demo/log/
 /sample-apps/file-feed-sink-demo/data/output.txt
+/.idea/encodings.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+/sample-apps/state-checkpoint-demo/data/checkpoint.txt
+/compiler/replay-events/src/main/resources/com/telamin/fluxtion/example/compile/replay/replay/generated/

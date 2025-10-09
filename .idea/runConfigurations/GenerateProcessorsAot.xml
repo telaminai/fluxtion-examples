@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="GenerateProcessorsAot" type="Application" factoryName="Application" nameIsGenerated="true">
     <option name="MAIN_CLASS_NAME" value="com.telamin.fluxtion.example.compile.aot.GenerateProcessorsAot" />
-    <module name="fluxtion.examples-aot-compiler" />
+    <module name="examples-aot-compiler" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/compiler/aot-compiler" />
     <extension name="coverage">
       <pattern>

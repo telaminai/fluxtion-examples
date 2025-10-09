@@ -9,14 +9,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>telamin :: fluxtion.examples.master</name>
+    <name>telamin :: fluxtion.examples</name>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fluxtion.version>0.9.10</fluxtion.version>
-        <fluxtion.compiler.version>1.0.21</fluxtion.compiler.version>
+        <fluxtion.compiler.version>1.0.22</fluxtion.compiler.version>
     </properties>
 
     <modules>
@@ -26,6 +26,8 @@
         <module>sample-apps/file-feed-sink-demo</module>
         <module>sample-apps/log-config-demo</module>
         <module>sample-apps/junit-testing-demo</module>
+        <module>sample-apps/state-checkpoint-demo</module>
+        <module>compiler/replay-events</module>
     </modules>
 
     <build>
