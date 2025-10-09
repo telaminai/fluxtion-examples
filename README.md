@@ -36,6 +36,13 @@ If you are new to Fluxtion, start with the [getting-started](getting-started) mo
         - trigger: update/publish/reset mechanics
         - node: wrapping functions, subscribing to nodes, push patterns
         - eventfeed: simple runner for file‑based inputs
+- [sample-apps](sample-apps)
+    - Complete, deployable applications that demonstrate end-to-end Fluxtion patterns. Each builds a runnable shaded jar and includes helper scripts for easy execution.
+    - Applications included:
+        - [file-feed-sink-demo](sample-apps/file-feed-sink-demo) – Reads lines from a file, transforms them through a DataFlow pipeline (upper-case), and writes output to another file. Demonstrates FileEventFeed, DataFlow transformations, and FileMessageSink. Includes start.sh/stop.sh scripts for foreground/background execution.
+        - [junit-testing-demo](sample-apps/junit-testing-demo) – Comprehensive guide to testing Fluxtion DataFlow applications with JUnit 5. Shows how to test order processing logic, mock services with Mockito, and substitute event feeds/sinks for testing. Demonstrates that DataFlow's single-threaded execution makes testing straightforward.
+        - [log-config-demo](sample-apps/log-config-demo) – Shows how to configure logging in Fluxtion applications using Log4j2 with YAML configuration. Demonstrates bridging java.util.logging (JUL) to Log4j2 and directing logs to console and file appenders. Includes run.sh/run.bat helper scripts.
+        - [state-checkpoint-demo](sample-apps/state-checkpoint-demo) – Demonstrates state management and checkpointing in Fluxtion. Reads lines from a file, assigns sequential IDs, and uses a CheckpointFilter to persist progress. On restart, the app resumes from the last checkpoint. Shows how to manage state with user classes and external services for fault tolerance. Includes start.sh/stop.sh scripts with foreground/background modes.
 
 ## Quick start
 
