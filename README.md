@@ -43,6 +43,12 @@ If you are new to Fluxtion, start with the [getting-started](getting-started) mo
         - [junit-testing-demo](sample-apps/junit-testing-demo) – Comprehensive guide to testing Fluxtion DataFlow applications with JUnit 5. Shows how to test order processing logic, mock services with Mockito, and substitute event feeds/sinks for testing. Demonstrates that DataFlow's single-threaded execution makes testing straightforward.
         - [log-config-demo](sample-apps/log-config-demo) – Shows how to configure logging in Fluxtion applications using Log4j2 with YAML configuration. Demonstrates bridging java.util.logging (JUL) to Log4j2 and directing logs to console and file appenders. Includes run.sh/run.bat helper scripts.
         - [state-checkpoint-demo](sample-apps/state-checkpoint-demo) – Demonstrates state management and checkpointing in Fluxtion. Reads lines from a file, assigns sequential IDs, and uses a CheckpointFilter to persist progress. On restart, the app resumes from the last checkpoint. Shows how to manage state with user classes and external services for fault tolerance. Includes start.sh/stop.sh scripts with foreground/background modes.
+- [compiler](compiler)
+    - **Note**: These are compiler-only examples and are not part of the open-source Fluxtion project.
+    - Advanced examples demonstrating AOT (Ahead-of-Time) compilation and specialized compilation features.
+    - Examples included:
+        - [aot-compiler](compiler/aot-compiler) – Demonstrates AOT compilation of event processors with a price ladder processing example. Shows how to generate static, debuggable event processors at build time for maximum performance. Includes JMH benchmarks and HDR histogram integration for performance testing.
+        - [replay-events](compiler/replay-events) – Demonstrates Fluxtion's event replay mechanism for recording and replaying event streams with deterministic, data-driven time. Essential for debugging production issues in development environments, testing changes against real production data, and creating reproducible test cases. Shows how AOT compilation ensures identical behavior between production and replay.
 
 ## Quick start
 
