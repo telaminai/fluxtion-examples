@@ -6,6 +6,8 @@ Overview
   persist a checkpoint to disk.
 - Fluxtion dataflows are stateless graphs by design. Any state you need (such as offsets, checkpoints, or aggregated
   values) should be managed by user-provided classes and services.
+- Using external services for state management is a common pattern in Fluxtion applications, to provide fault tolerance
+  and scalability.
 
 What this app does
 
