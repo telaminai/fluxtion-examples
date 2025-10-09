@@ -41,3 +41,4 @@ build/
 /.venv/include/
 /.venv/lib/
 /sample-apps/log-config-demo/log/
+/sample-apps/file-feed-sink-demo/data/output.txt
