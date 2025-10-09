@@ -107,8 +107,7 @@ public class PriceLadderProcessor
     //Filter constants
 
     //unknown event handler
-    private Consumer unKnownEventHandler = (e) -> {
-    };
+    private Consumer unKnownEventHandler = (e) -> {};
 
     public PriceLadderProcessor(Map<Object, Object> contextMap) {
         if (context != null) {

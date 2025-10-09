@@ -44,3 +44,5 @@ build/
 /.idea/encodings.xml
 /.idea/misc.xml
 /.idea/vcs.xml
+/sample-apps/state-checkpoint-demo/data/checkpoint.txt
+/compiler/replay-events/src/main/resources/com/telamin/fluxtion/example/compile/replay/replay/generated/
