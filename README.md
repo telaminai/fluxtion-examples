@@ -49,6 +49,8 @@ If you are new to Fluxtion, start with the [getting-started](getting-started) mo
     - Examples included:
         - [aot-compiler](compiler/aot-compiler) – Demonstrates AOT compilation of event processors with a price ladder processing example. Shows how to generate static, debuggable event processors at build time for maximum performance. Includes JMH benchmarks and HDR histogram integration for performance testing.
         - [replay-events](compiler/replay-events) – Demonstrates Fluxtion's event replay mechanism for recording and replaying event streams with deterministic, data-driven time. Essential for debugging production issues in development environments, testing changes against real production data, and creating reproducible test cases. Shows how AOT compilation ensures identical behavior between production and replay.
+        - [audit-logging-demo](compiler/audit-logging-demo) – Structured, per-node audit logging using EventLogger injected into nodes that implement EventLogSource. Shows KV-based records, topological ordering, tracing vs logging, Log4j2 LogRecordListener integration, and partial-record recovery with getLastAuditLogRecord when exceptions occur.
+        - [auditor-monitoring-demo](compiler/auditor-monitoring-demo) – General-purpose auditors for runtime monitoring. Demonstrates implementing Auditor to track invocation counts and latencies and publishing metrics (e.g., to OpenTelemetry). Illustrates where an auditor fits in the processing loop and how to register auditors in the AOT builder.
 
 ## Quick start
 

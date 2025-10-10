@@ -15,7 +15,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fluxtion.version>0.9.11-SNAPSHOT</fluxtion.version>
+        <fluxtion.version>0.9.11</fluxtion.version>
         <fluxtion.compiler.version>1.0.22</fluxtion.compiler.version>
     </properties>
 
@@ -28,8 +28,8 @@
         <module>sample-apps/junit-testing-demo</module>
         <module>sample-apps/state-checkpoint-demo</module>
         <module>compiler/replay-events</module>
-        <module>sample-apps/audit-logging-demo</module>
-        <module>sample-apps/auditor-monitoring-demo</module>
+        <module>compiler/audit-logging-demo</module>
+        <module>compiler/auditor-monitoring-demo</module>
     </modules>
 
     <build>
