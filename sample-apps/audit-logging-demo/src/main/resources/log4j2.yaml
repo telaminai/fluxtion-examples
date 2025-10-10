@@ -1,0 +1,24 @@
+Configuration:
+  status: WARN
+  Appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%d{HH:mm:ss.SSS} [%t] %-5level %logger - %msg%n"
+  Loggers:
+    Logger:
+      - name: com.telamin.fluxtion.runtime.audit
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: Console
+      - name: com.telamin.fluxtion
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: Console
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console
