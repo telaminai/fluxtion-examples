@@ -5,7 +5,7 @@
 
 package com.telamin.fluxtion.example.compile.aot;
 
-import com.fluxtion.dataflow.Fluxtion;
+import com.telamin.fluxtion.Fluxtion;
 import com.telamin.fluxtion.example.compile.aot.node.PriceLadderPublisher;
 
 public class GenerateProcessorsAot {

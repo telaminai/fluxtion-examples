@@ -1,8 +1,6 @@
 package com.telamin.fluxtion.example.sampleapps.auditmon;
 
-import com.fluxtion.dataflow.Fluxtion;
 import com.telamin.fluxtion.example.sampleapps.auditmon.generated.AuditorMonitoringProcessor;
-import com.telamin.fluxtion.runtime.CloneableDataFlow;
 import com.telamin.fluxtion.runtime.DataFlow;
 
 public class AuditorMonitoringDemoRunner {
