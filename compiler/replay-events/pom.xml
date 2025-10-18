@@ -19,19 +19,24 @@
     </properties>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.telamin.fluxtion</groupId>-->
+<!--            <artifactId>fluxtion-full-compiler</artifactId>-->
+<!--            <version>${fluxtion.compiler.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
-            <artifactId>fluxtion-full-compiler</artifactId>
-            <version>${fluxtion.compiler.version}</version>
+            <artifactId>fluxtion-builder</artifactId>
+            <version>${fluxtion.version}</version>
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>repsy-fluxtion-private</id>
-            <name>My Private Maven Repository on Repsy</name>
-            <url>https://repo.repsy.io/mvn/fluxtion/fluxtion-private</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>repsy-fluxtion-private</id>-->
+<!--            <name>My Private Maven Repository on Repsy</name>-->
+<!--            <url>https://repo.repsy.io/mvn/fluxtion/fluxtion-private</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
 </project>

@@ -1,10 +1,10 @@
 package com.telamin.fluxtion.example.compile.replay.replay;
 
-import com.fluxtion.dataflow.Fluxtion;
-import com.fluxtion.dataflow.compiler.config.FluxtionCompilerConfig;
-import com.fluxtion.dataflow.compiler.config.FluxtionGraphBuilder;
-import com.fluxtion.dataflow.replay.YamlReplayRecordWriter;
+import com.telamin.fluxtion.Fluxtion;
+import com.telamin.fluxtion.builder.compile.config.FluxtionCompilerConfig;
+import com.telamin.fluxtion.builder.compile.config.FluxtionGraphBuilder;
 import com.telamin.fluxtion.builder.generation.config.EventProcessorConfig;
+import com.telamin.fluxtion.builder.replay.YamlReplayRecordWriter;
 
 import java.util.Arrays;
 

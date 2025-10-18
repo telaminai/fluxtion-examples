@@ -38,10 +38,15 @@
     </build>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.telamin.fluxtion</groupId>-->
+<!--            <artifactId>fluxtion-full-compiler</artifactId>-->
+<!--            <version>${fluxtion.compiler.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
-            <artifactId>fluxtion-full-compiler</artifactId>
-            <version>${fluxtion.compiler.version}</version>
+            <artifactId>fluxtion-builder</artifactId>
+            <version>${fluxtion.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>

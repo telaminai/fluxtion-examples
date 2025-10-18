@@ -1,7 +1,7 @@
 package com.telamin.fluxtion.example.compile.replay.replay;
 
-import com.fluxtion.dataflow.replay.YamlReplayRecordWriter;
-import com.fluxtion.dataflow.replay.YamlReplayRunner;
+import com.telamin.fluxtion.builder.replay.YamlReplayRecordWriter;
+import com.telamin.fluxtion.builder.replay.YamlReplayRunner;
 import com.telamin.fluxtion.example.compile.replay.replay.generated.GlobalPnlProcessor;
 
 import java.io.StringReader;
