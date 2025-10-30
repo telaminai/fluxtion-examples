@@ -17,6 +17,7 @@ import com.telamin.fluxtion.runtime.annotations.ExportService;
 import com.telamin.fluxtion.runtime.annotations.OnEventHandler;
 import com.telamin.fluxtion.runtime.audit.Auditor;
 import com.telamin.fluxtion.runtime.audit.EventLogControlEvent;
+import com.telamin.fluxtion.runtime.audit.EventLogControlEvent.LogLevel;
 import com.telamin.fluxtion.runtime.audit.EventLogManager;
 import com.telamin.fluxtion.runtime.audit.NodeNameAuditor;
 import com.telamin.fluxtion.runtime.callback.CallbackDispatcherImpl;
@@ -52,10 +53,9 @@ import java.util.function.Consumer;
  * Event classes supported:
  *
  * <ul>
- *   <li>com.telamin.fluxtion.builder.generation.model.ExportFunctionMarker
  *   <li>com.telamin.fluxtion.example.sampleapps.auditmon.Trade
  *   <li>com.telamin.fluxtion.runtime.audit.EventLogControlEvent
- *   <li>com.telamin.fluxtion.runtime.time.ClockStrategy.ClockStrategyEvent
+ *   <li>com.telamin.fluxtion.runtime.time.ClockStrategy$ClockStrategyEvent
  * </ul>
  *
  * @author Greg Higgins
@@ -78,10 +78,10 @@ public class AuditorMonitoringProcessor
   private final transient SubscriptionManagerNode subscriptionManager =
       new SubscriptionManagerNode();
   private final transient MutableDataFlowContext context =
-      new MutableDataFlowContext(
-          nodeNameLookup, callbackDispatcher, subscriptionManager, callbackDispatcher);
+      new com.telamin.fluxtion.runtime.node.MutableDataFlowContext(
+          nodeNameLookup, callbackDispatcher, subscriptionManager, callbackDispatcher);;
   public final transient ServiceRegistryNode serviceRegistry = new ServiceRegistryNode();
-  private final transient CalcNode calcNode_0 = new CalcNode();
+  private final transient CalcNode calcNode_1 = new CalcNode();
   public final transient MonitoringAuditor monitoringAuditor = new MonitoringAuditor();
   private final transient ExportFunctionAuditEvent functionAudit = new ExportFunctionAuditEvent();
   //Dirty flags
@@ -104,10 +104,10 @@ public class AuditorMonitoringProcessor
     if (context != null) {
       context.replaceMappings(contextMap);
     }
-    eventLogger.trace = (boolean) true;
-    eventLogger.printEventToString = (boolean) true;
-    eventLogger.printThreadName = (boolean) true;
-    eventLogger.traceLevel = com.telamin.fluxtion.runtime.audit.EventLogControlEvent.LogLevel.INFO;
+    eventLogger.trace = true;
+    eventLogger.printEventToString = true;
+    eventLogger.printThreadName = true;
+    eventLogger.traceLevel = LogLevel.INFO;
     eventLogger.clock = clock;
     context.setClock(clock);
     serviceRegistry.setDataFlowContext(context);
@@ -220,14 +220,13 @@ public class AuditorMonitoringProcessor
 
   @Override
   public void onEventInternal(Object event) {
-    if (event instanceof com.telamin.fluxtion.example.sampleapps.auditmon.Trade) {
+    if (event instanceof Trade) {
       Trade typedEvent = (Trade) event;
       handleEvent(typedEvent);
-    } else if (event instanceof com.telamin.fluxtion.runtime.audit.EventLogControlEvent) {
+    } else if (event instanceof EventLogControlEvent) {
       EventLogControlEvent typedEvent = (EventLogControlEvent) event;
       handleEvent(typedEvent);
-    } else if (event
-        instanceof com.telamin.fluxtion.runtime.time.ClockStrategy.ClockStrategyEvent) {
+    } else if (event instanceof ClockStrategyEvent) {
       ClockStrategyEvent typedEvent = (ClockStrategyEvent) event;
       handleEvent(typedEvent);
     } else {
@@ -238,8 +237,8 @@ public class AuditorMonitoringProcessor
   public void handleEvent(Trade typedEvent) {
     auditEvent(typedEvent);
     //Default, no filter methods
-    auditInvocation(calcNode_0, "calcNode_0", "value", typedEvent);
-    calcNode_0.value(typedEvent);
+    auditInvocation(calcNode_1, "calcNode_1", "value", typedEvent);
+    calcNode_1.value(typedEvent);
     afterEvent();
   }
 
@@ -286,18 +285,17 @@ public class AuditorMonitoringProcessor
   //EVENT BUFFERING - START
   public void bufferEvent(Object event) {
     buffering = true;
-    if (event instanceof com.telamin.fluxtion.example.sampleapps.auditmon.Trade) {
+    if (event instanceof Trade) {
       Trade typedEvent = (Trade) event;
       auditEvent(typedEvent);
-      auditInvocation(calcNode_0, "calcNode_0", "value", typedEvent);
-      calcNode_0.value(typedEvent);
-    } else if (event instanceof com.telamin.fluxtion.runtime.audit.EventLogControlEvent) {
+      auditInvocation(calcNode_1, "calcNode_1", "value", typedEvent);
+      calcNode_1.value(typedEvent);
+    } else if (event instanceof EventLogControlEvent) {
       EventLogControlEvent typedEvent = (EventLogControlEvent) event;
       auditEvent(typedEvent);
       auditInvocation(eventLogger, "eventLogger", "calculationLogConfig", typedEvent);
       eventLogger.calculationLogConfig(typedEvent);
-    } else if (event
-        instanceof com.telamin.fluxtion.runtime.time.ClockStrategy.ClockStrategyEvent) {
+    } else if (event instanceof ClockStrategyEvent) {
       ClockStrategyEvent typedEvent = (ClockStrategyEvent) event;
       auditEvent(typedEvent);
       auditInvocation(clock, "clock", "setClockStrategy", typedEvent);
@@ -336,7 +334,7 @@ public class AuditorMonitoringProcessor
 
   private void initialiseAuditor(Auditor auditor) {
     auditor.init();
-    auditor.nodeRegistered(calcNode_0, "calcNode_0");
+    auditor.nodeRegistered(calcNode_1, "calcNode_1");
     auditor.nodeRegistered(callbackDispatcher, "callbackDispatcher");
     auditor.nodeRegistered(subscriptionManager, "subscriptionManager");
     auditor.nodeRegistered(context, "context");
