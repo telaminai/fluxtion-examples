@@ -19,11 +19,6 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.telamin.fluxtion</groupId>-->
-<!--            <artifactId>fluxtion-full-compiler</artifactId>-->
-<!--            <version>${fluxtion.compiler.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
             <artifactId>fluxtion-builder</artifactId>

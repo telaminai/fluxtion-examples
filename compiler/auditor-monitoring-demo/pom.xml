@@ -30,11 +30,11 @@
             <artifactId>fluxtion-runtime</artifactId>
             <version>${fluxtion.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.telamin.fluxtion</groupId>
-            <artifactId>fluxtion-full-compiler</artifactId>
-            <version>${fluxtion.compiler.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.telamin.fluxtion</groupId>-->
+<!--            <artifactId>fluxtion-generator-core</artifactId>-->
+<!--            <version>${fluxtion.compiler.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
