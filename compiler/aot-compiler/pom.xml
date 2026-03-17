@@ -34,7 +34,20 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.fluxtion.dataflow</groupId>
+                <artifactId>dataflow-maven-plugin</artifactId>
+                <version>1.1-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>scan</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
     </build>
 
     <dependencies>
@@ -43,11 +56,6 @@
             <artifactId>fluxtion-builder</artifactId>
             <version>${fluxtion.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.telamin.fluxtion</groupId>-->
-<!--            <artifactId>fluxtion-generator-core</artifactId>-->
-<!--            <version>${fluxtion.compiler.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
             <artifactId>fluxtion-generator-restclient</artifactId>
